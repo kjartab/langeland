@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+
+    <title>Langeland</title>
+
+    <link href="/assets/lib/leaflet/leaflet.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/langelandfull.css" rel="stylesheet">
+    <link href="../css/frontbox.css" rel="stylesheet">
+
+
+  </head>
+<!-- NAVBAR
+================================================== -->
+<body>
+
+
+    <script src="/assets/lib/jquery/jquery-2.1.1.min.js"></script>
+    <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/lib/leaflet/leaflet.js"></script>
+    <script src="/assets/common/extras/statusBarMadness.js"></script>
+    <script src="/assets/common/mapApps/langeland.js"></script>
+
+<div class="panel panel-default" >
+  <!-- Default panel contents -->
+  <div class="panel-heading">Position updates</div>
+
+  <!-- Table -->
+  <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Position</th>
+            <th>Timestamp</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody id="resbody">
+         
+        </tbody>
+      </table>
+</div>
+
+<div id="innhald">
+
+		<div class="navbar-default navbar-fixed-top" id="navbar">
+
+			<div class="navbar-header col-lg-2">
+			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+				   <span class="icon-bar"></span>
+				   <span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="../">Langeland Skisenter</a>
+			</div>
+				<div class="navbar-collapse collapse col-lg-10">
+					<ul class="nav navbar-nav">
+
+						<li><a href="#innhald">HEIM</a></li>
+						<li><a href="#loyper">LØYPER</a></li>
+						<li><a href="#ver">VER</a></li>
+						<li><a href="#kamera">KAMERA</a></li>
+						<li><a href="#sponsor">SPONSOR</a></li>
+						<li><a href="#kontakt">KONTAKT</a></li>
+
+					</ul>
+					
+
+				</div><!--/.nav-collapse -->
+			
+		</div>
+
+
+
+</div>
+
+	<div id="loyper">
+	
+	<div class="row">
+	<div class="col-lg-2">
+
+		 <table class="table">
+        <thead>
+          <tr>
+            <th>Løype</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="trackbody">
+         
+        </tbody>
+      </table>
+
+	</div>
+	<div class="col-lg-10">
+		<div id="map"></div>
+</div>
+	
+	
+</div>
+
+	<!-- CAMERA SECTION -->
+		
+    <div id="kamera">
+
+		<div id="kamera-content">
+
+			<div class="col-md-3"
+			  <p class="lead">Kameraet er plassert på skihytta og vender ut mot skistadion. Tenesta er levert av Firda og Enivest.</p>
+			</div>
+			<div class="col-md-9">
+			  <img class="image img-responsive" src="http://37.44.172.66/axis-cgi/jpg/image.cgi?resolution=1024x768" alt="Generic placeholder image">
+			</div>
+		</div>
+
+	</div>
+
+	<!-- WEATHER SECTION -->
+	
+
+
+    </div><!-- /.container -->
+</div>
+
+
+
+    <div class="footer">
+		<div class="container">
+
+			<div class="col-md-4" id="kontakt">
+					<h4>KONTAKTINFO</h4>
+
+					<h4>Epost</h4>
+					<p>kontakt@langelandskisenter.no</p>
+
+					<h4>Kontaktperson</h4>
+
+					<p>Kjetil Bjørset</p>
+					<p>91312250</p>
+			</div>
+
+			<div class="col-md-4" id="sosialmedia">
+				<h4>SOSIALE MEDIA</h4>
+				<p>Du kan også finne oss på Google+ og Facebook<p>
+			</div>
+
+			<div class="col-md-4" id="test">
+
+			</div>
+
+		</div>
+    </div>
+
+
+
+
+  <script>
+
+
+	$(window).ready(function() {
+
+		var contentwidth = $('#heim').width();
+		if ((contentwidth) < 720){
+			$('.fullscreen-img').css('background', 'color: #444444');
+		} else if ((contentwidth) < 996){
+			$('.fullscreen-img').css('background', 'url(img/bglang-996.jpg)');
+		}
+	});
+
+	$(window).resize(function () {
+		var h = $(window).height(),
+			offsetTop = 55; // Calculate the top offset
+		var top = $("#top").height();
+		$("#map").css('height', $(window).height()-offsetTop);
+	}).resize();
+	
+	lang.init();
+	
+	
+
+	$.getJSON('/data/langeland/spatiotemporal', function (data) {
+	var time = new Date();
+		lang.addSegments(JSON.parse(data));
+		console.log(new Date() - time);
+		loadTrackData();
+	});
+	
+	
+	function loadTrackData() {
+	
+		$.getJSON('/data/langeland/trackobjects', function (data) {
+			
+			for (var i=0; i<data.length; i++) {
+				lang.addTrackObjects(JSON.parse(data[i]));
+			}
+			populateList(lang.getTracks());
+		
+		});
+	
+	}
+	
+	
+	/*
+	
+	Frontend thingies
+	
+	*/
+		
+	$("#trackbody").on('mouseover', 'tr', function () {
+		lang.highlightTrack(this.id.substr(4));
+	});
+
+	$("#trackbody").on('mouseout', 'tr', function () {
+		lang.resetAllStyles();
+	});
+			
+	function populateList(trackList) {
+		trackList.sort(function(a,b) {console.log(a.trackLength + ' '+ b.trackLength);return a.trackLength - b.trackLength});
+		
+		for (var i=0; i<trackList.length; i++) {
+					
+			
+			
+			$("#trackbody").append(buildStatusBar(trackList[i]));
+		
+		
+		}
+	}
+	
+
+		
+	$.getJSON('../data/inserted/?numpoints=100&order=desc', function (data) {
+		var table = $("#resbody");
+		for (i=0; i<data.length; i++) {
+          
+			$("#resbody").append(
+				"<tr>"+
+            "<td>" + data[i][0] + "</td>" +
+            "<td>" + data[i][1] +"</td>" +
+           	"<td>" + data[i][2] + "</td>" +
+            "<td>" + data[i][3] + " s</td>" +
+          "</tr>"
+
+			);
+		 
+		}
+
+	});
+
+
+
+
+</script>
+
+
+</body>
+</html>
