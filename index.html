@@ -21,8 +21,8 @@
     <script src="/assets/lib/jquery/jquery-2.1.1.min.js"></script>
     <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/lib/leaflet/leaflet.js"></script>
-    <script src="/assets/common/extras/statusBarMadness.js"></script>
-    <script src="/assets/common/extras/TemporalColor.js"></script>
+    <script src="/assets/common/langeland/statusBar.js"></script>
+    <script src="/assets/common/langeland/TemporalColor.js"></script>
     <script src="/assets/common/mapApps/langeland.js"></script>
 
 
@@ -31,29 +31,18 @@
 	
 	<div class="navbar-default navbar-fixed-top" id="navbar">
 
-		<div class="navbar-header col-lg-2">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
+		
 			<a class="navbar-brand" href="#">Langeland Skisenter</a>
-		</div>
-			<div class="navbar-collapse collapse col-lg-10">
+
 				<ul class="nav navbar-nav">
 
 					<li><a href="#home">HEIM</a></li>
 					<li><a href="#tracks">LØYPER</a></li>
-					<li><a href="#weather">VER</a></li>
 					<li><a href="#camera">KAMERA</a></li>
-					<li><a href="#sponsor">SPONSOR</a></li>
 					<li><a href="#contact">KONTAKT</a></li>
 
 				</ul>
 				
-
-			</div>	<!--/.nav-collapse -->
-		
 	</div>
 
 	
@@ -245,7 +234,7 @@
 	
 	
 
-	$.getJSON('/data/langeland/spatiotemporal', function (data) {
+	$.getJSON('/datapi/langeland/spatiotemporal', function (data) {
 	var time = new Date();
 		lang.addSegments(JSON.parse(data));
 		console.log(new Date() - time);

@@ -213,7 +213,7 @@ $('.navbar-collapse ul li a').click(function() {
 	
 	
 
-	$.getJSON('/data/langeland/spatiotemporal', function (data) {
+	$.getJSON('/datapi/langeland/spatiotemporal', function (data) {
 	var time = new Date();
 		LS.app.addSegments(JSON.parse(data));
 		console.log(new Date() - time);
@@ -223,7 +223,7 @@ $('.navbar-collapse ul li a').click(function() {
 	
 	function loadTrackData() {
 	
-		$.getJSON('/data/langeland/trackobjects', function (data) {
+		$.getJSON('/datapi/langeland/trackobjects', function (data) {
 			
 			for (var i=0; i<data.length; i++) {
 				LS.app.addTrackObjects(JSON.parse(data[i]));
