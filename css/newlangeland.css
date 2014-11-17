@@ -310,9 +310,43 @@
 		}
 	}
 
+	#loype-button {
+		display: inline-block;
+		position: relative;
+		float: left;
+		z-index: 10000;
+		height: 20px;
+		width: 80px;
+		background-color: #555555;
+		
+
+		-webkit-transform: rotate(90deg);
+		-moz-transform: rotate(90deg);
+		-ms-transform: rotate(90deg);
+		-o-transform: rotate(90deg);
+		transform: rotate(90deg);
+
+		/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
+
+
+		transform-origin: 17% 50%;
+
+		/* Should be unset in IE9+ I think. */
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+	}
+	
+	
+	.rotate-button {
+		
+	}
+	
 	.content-section {
+		min-height: 70%;
 		color: #eeeeee;
 		padding-top: 100px;
+		
+		
 	}
 
 	.download-section {
@@ -330,7 +364,7 @@
 	#map {
 		width: 100%;
 		height: 200px;
-		
+		position: absolute;
 	}
 
 	@media(min-width:767px) {
@@ -349,6 +383,24 @@
 		}
 	}
 
+	#trackinfo-container {
+		position: absolute;
+		min-height: 100%;
+	}
+	
+	#trackdiv {
+		z-index: 1000;
+		display: inline-block;
+		max-width: 30%;
+		height: 100%;
+	}
+	
+	.map-container {
+		
+		height: 80%
+		
+	}
+	
 
 	.btn {
 		text-transform: uppercase;
@@ -507,9 +559,10 @@
 	}
 	
 	.track-section {
-		background: rgba(230,230,230,.5);
+		background: rgba(230,230,230,.85);
 		text-align: left;
 		color: #121212;
+		z-index: 11000;
 	}
 	
 	.track-section h5,h4, h6{
@@ -518,10 +571,18 @@
 		font-size: 16px;
 	}
 	
+	.track-outer {
+		width: 20%;
+		position: absolute;
+		display: inline-block;
+	}
+	
 	
 	.track-container {
+		float: right;
+		position: relative;
 		width: 100%;
-		background-color: rgba(230,230,230);
+		background-color: rgba(230,230,230,.85);
 	   border-bottom-width:1px;
 	   border-bottom-color: #bcbcbc;
 	   border-bottom-style: solid;
@@ -529,7 +590,7 @@
     }
 	.track-container:hover {
 	
-		background-color: rgba(222,222,222,.2);
+		background-color: rgba(230,230,230,.95);
 	}
 
 	.track-container-left, .track-container-right{
@@ -602,11 +663,13 @@
 		
 	}
 	
-	#trackdiv {
-    /* overflow-y: scroll; */
-	}
+
 	
 	#brand {
 		text-align: center;
 		width = 33%;
-	}
+	
+	
+	/* Track section */
+	
+	
