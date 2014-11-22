@@ -345,7 +345,7 @@
 		min-height: 70%;
 		color: #eeeeee;
 		padding-top: 100px;
-		
+		height: auto;
 		
 	}
 
@@ -383,15 +383,27 @@
 		}
 	}
 
-	#trackinfo-container {
-		position: absolute;
-		min-height: 100%;
+	@media(min-width:767px) {
+		#trackinfo-container {
+			position: absolute;
+			min-height: 100%;
+			max-width: 25%;
+		}
 	}
 	
+	
+	@media(min-width:1280px) {
+		#trackinfo-container {
+			position: absolute;
+			min-height: 100%;
+			max-width: 20%;
+		}
+	}
+		
 	#trackdiv {
 		z-index: 1000;
 		display: inline-block;
-		max-width: 30%;
+		
 		height: 100%;
 	}
 	
@@ -501,6 +513,7 @@
 	
 	.track-content-section {
 		padding-top: 100px;
+		padding-bottom: 20px;
 	}
 	
 	#contact {
