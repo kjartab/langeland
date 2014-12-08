@@ -100,11 +100,9 @@ require_once('includes/db.php');
 				$postdata = $_POST["data"];
 				// Ensure login credentials are correct
 					
-					file_put_contents('postlog.txt', $postdata);
 					$dbWriter->connect();
 					$dbWriter->insertTrackingPosition($postdata);
 
-					print_r($postdata);
 					Controller::respond(200);
 			
 				break;
