@@ -33,7 +33,7 @@ LS.timeModule = (function() {
 		var now = new Date();
 		var time = convertTime(timeString);		
 	
-		return   time.getHours() + ':' + time.getMinutes() + ' ' + '. '  + monthName(time.getMonth());
+		return  time.getHours() + ':' +  (time.getMinutes()<10 ? '0' : '') + time.getMinutes()+ ' '  + time.getDate() + '. '  + monthName(time.getMonth());
 	
 		
 	}
