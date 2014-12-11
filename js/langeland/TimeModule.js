@@ -97,19 +97,19 @@ LS.timeModule = (function() {
 		switch(monthInteger) {
 			
 			case 0:
-				return 'januar';
+				return 'jan';
 			break;
 			
 			case 1:
-				return 'februar';
+				return 'feb';
 			break;
 			
 			case 2:
-				return 'mars';
+				return 'mar';
 			break;
 			
 			case 3:
-				return 'april';
+				return 'apr';
 			break;
 			
 			case 4:
@@ -117,31 +117,31 @@ LS.timeModule = (function() {
 			break;	
 			
 			case 5:
-				return 'juni';
+				return 'jun';
 			break;
 			
 			case 6:
-				return 'juli';
+				return 'jul';
 			break;
 			
 			case 7:
-				return 'august';
+				return 'aug';
 			break;
 			
 			case 8:
-				return 'september';
+				return 'sept';
 			break;
 			
 			case 9:
-				return 'oktober';
+				return 'okt';
 			break;
 			
 			case 10:
-				return 'november';
+				return 'nov';
 			break;
 			
 			case 11:
-				return 'desember';
+				return 'des';
 			break;
 			
 		}
