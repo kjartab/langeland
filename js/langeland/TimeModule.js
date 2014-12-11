@@ -2,7 +2,7 @@ var LS = LS || {};
 
 LS.timeModule = (function() {
 	
-	function getTimeText(timeString) {
+	function getTimeTextOld(timeString) {
 		var now = new Date();
 		var time = convertTime(timeString);		
 		
@@ -27,8 +27,14 @@ LS.timeModule = (function() {
 
 		return  'I fjor';
 		
-		
-		
+	}
+	
+	function getTimeText(timeString) {
+		var now = new Date();
+		var time = convertTime(timeString);		
+	
+		return  time.getDate() + '. '  + monthName(time.getMonth());
+	
 		
 	}
 	
@@ -85,6 +91,62 @@ LS.timeModule = (function() {
 			
 		}
 	}
+	
+	
+	function fullMonthName(monthInteger) {
+		switch(monthInteger) {
+			
+			case 0:
+				return 'januar';
+			break;
+			
+			case 1:
+				return 'februar';
+			break;
+			
+			case 2:
+				return 'mars';
+			break;
+			
+			case 3:
+				return 'april';
+			break;
+			
+			case 4:
+				return 'mai';
+			break;	
+			
+			case 5:
+				return 'juni';
+			break;
+			
+			case 6:
+				return 'juli';
+			break;
+			
+			case 7:
+				return 'august';
+			break;
+			
+			case 8:
+				return 'september';
+			break;
+			
+			case 9:
+				return 'oktober';
+			break;
+			
+			case 10:
+				return 'november';
+			break;
+			
+			case 11:
+				return 'desember';
+			break;
+			
+		}
+	}
+	
 	
 	return {
 		getTimeText : getTimeText
