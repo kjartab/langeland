@@ -38,7 +38,7 @@ LS.timeModule = (function() {
 		
 	}
 	
-	function monthName(monthInteger) {
+	function fullMonthName(monthInteger) {
 		switch(monthInteger) {
 			
 			case 0:
@@ -93,7 +93,7 @@ LS.timeModule = (function() {
 	}
 	
 	
-	function fullMonthName(monthInteger) {
+	function monthName(monthInteger) {
 		switch(monthInteger) {
 			
 			case 0:
