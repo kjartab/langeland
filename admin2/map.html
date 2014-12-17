@@ -151,7 +151,7 @@
 		for (i=0; i<data.length; i++) {
 			try {
 				tempPoint = JSON.parse(data[i][1]);
-			} catch {
+			} catch (error) {
 				tempPoint = JSON.parse('"{"type":"Point","coordinates":[5.85,61.5,387.5]}"');
 			}
 		
