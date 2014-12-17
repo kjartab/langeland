@@ -159,13 +159,22 @@
 			
 			if (tempPoint != null) {
 				
-			tempPoint.properties = {
-				'id' : data[i][0],
-				'insertedtime' : data[i][2],
-				'positiontime' : data[i][3]
-			}
-			console.log(tempPoint);
-			geojson = L.geoJson(tempPoint).addTo(map);
+			
+				console.log(tempPoint);
+				tempPoint.properties = {
+					'id' : data[i][0],
+					'insertedtime' : data[i][2],
+					'positiontime' : data[i][3]
+				}
+				geojson = L.geoJson(tempPoint,
+				 pointToLayer: function (feature, latlng) {
+				       return L.circleMarker(latlng, getMarkerOptions(tempPoint.properties));
+				  }).addTo(map);
+				
+			} else {
+			
+				
+			
 				
 			}
 			
@@ -175,6 +184,20 @@
 		}
 
 	});
+	
+	
+	function getMarkerOptions(properties) {
+		radius: 8,
+		fillColor: "#ff7800",
+		color: "#000",
+		weight: 1,
+		opacity: 1,
+		fillOpacity: 0.8
+	}
+	
+	
+	}
+		
 	
 	
 	
