@@ -201,7 +201,7 @@
 	function onEachFeature(feature, layer) {
 		console.log(feature);
 		
-	        layer.bindPopup('A pretty CSS3 popup. <br> Easily customizable.')
+	        layer.bindPopup(feature.properties.id + '<br>Inserted: ' + feature.properties.insertedTime);
 	    
 	}
 
