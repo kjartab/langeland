@@ -147,6 +147,27 @@
                 <div class='col-lg-12'>
                 	
                 	<div id='datepicker'></div>
+                	
+                	<div class="container">
+			    <div class="row">
+			        <div class='col-sm-6'>
+			            <div class="form-group">
+			                <div class='input-group date' id='datetimepicker2'>
+			                    <input type='text' class="form-control" />
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+			                    </span>
+			                </div>
+			            </div>
+			        </div>
+			        <script type="text/javascript">
+			            $(function () {
+			                $('#datetimepicker2').datetimepicker({
+			                    language: 'no'
+			                });
+			            });
+			        </script>
+			    </div>
+			</div>
                 </div>
             </div>
         <!-- /#page-wrapper -->
@@ -174,8 +195,10 @@
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
 
+
+
 	$('#datepicker').datepicker();
-	
+	$('#datepicker').on('click', function() {console.log($('#datepicker').datepicker())});
 	$.getJSON('/datapi/langeland/rawdatahours/', function (data) {
 		var table = $("#resbody");
 		for (i=0; i<data.length; i++) {
@@ -215,7 +238,7 @@
 		});
 	}
 	getDataForInterval();
-
+	
 	
 	
     </script>
