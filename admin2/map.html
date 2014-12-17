@@ -152,12 +152,16 @@
 		for (i=0; i<data.length; i++) {
 			tempPoint = JSON.parse(data[i][1]);
 			console.log(tempPoint);
-			geojson = L.geoJson(tempPoint).addTo(map);
+			
+			if (typeof tempPoint === 'undefined') {
+				tempPoint = JSON.parse('"{"type":"Point","coordinates":[5.85,61.5,387.5]}"')
+			}
 			tempPoint.properties = {
-				'id' : data[i][1],
+				'id' : data[i][0],
 				'insertedtime' : data[i][2],
 				'positiontime' : data[i][3]
 			}
+			geojson = L.geoJson(tempPoint).addTo(map);
 			console.log(tempPoint);
 			}
 		}
