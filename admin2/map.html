@@ -161,6 +161,7 @@
 				tempPoint = JSON.parse('"{"type":"Point","coordinates":[5.85,61.5,387.5]}"');
 			}
 			
+			geojson = L.geoJson(tempPoint).addTo(map);
 		
 			console.log(tempPoint);
 			
@@ -169,7 +170,6 @@
 				'insertedtime' : data[i][2],
 				'positiontime' : data[i][3]
 			}
-			geojson = L.geoJson(tempPoint).addTo(map);
 			console.log(tempPoint);
 			
 		}
