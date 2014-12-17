@@ -211,7 +211,7 @@
 	}
 	
 	function onEachFeature(feature, layer) {
-	        layer.bindPopup(feature.properties.id + '<br>Inserted: ' + feature.properties.insertedtime);
+	        layer.bindPopup(feature.properties.id + '<br>Inserted: ' + feature.properties.insertedtime + '<br>Geom: ' + feature.properties.geom);
 	    
 	}
 
