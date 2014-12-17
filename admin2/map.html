@@ -149,14 +149,20 @@
 		var table = $("#resbody");
 		var tempPoint;
 		for (i=0; i<data.length; i++) {
-			tempPoint = JSON.parse(data[i][1]);
-			console.log(data[i]);
-			if (typeof tempPoint === 'undefined' || tempPoint == null) {
+			try {
+				tempPoint = JSON.parse(data[i][1]);
+			} catch {
 				tempPoint = JSON.parse('"{"type":"Point","coordinates":[5.85,61.5,387.5]}"');
 			}
 		
+		
 			geojson = L.geoJson(tempPoint).addTo(map);
 			console.log(tempPoint);
+			}
+			tempPoint.properties = {
+				'id' : data[i][0],
+				'insertedtime' : data[i][2],
+				'positiontime' : data[i][3]
 			}
 		}
 
