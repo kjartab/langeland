@@ -154,20 +154,6 @@
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
 
-	var map = L.map('map').setView([61.3999272955946,5.76203078840252], 13);
-	
-	map.addLayer(L.tileLayer.wms("http://opencache.statkart.no/gatekeeper/gk/gk.open?",{layers: 'topo2graatone', format: 'image/png'},{attribution:''}));
-	
-	map.on('layeradd', function(e) {
-
-		if (e.layer.feature) {
-			idMap.push({
-				sid : e.layer.feature.properties.sid,
-				lid : e.layer._leaflet_id
-			});
-		}
-	});
-	
 	
 	
 	$.getJSON('/datapi/langeland/rawdatahours/', function (data) {
