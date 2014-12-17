@@ -166,10 +166,10 @@
 					'insertedtime' : data[i][2],
 					'positiontime' : data[i][3]
 				}
-				geojson = L.geoJson(tempPoint,
+				geojson = L.geoJson(tempPoint, {
 				 pointToLayer: function (feature, latlng) {
 				       return L.circleMarker(latlng, getMarkerOptions(tempPoint.properties));
-				  }).addTo(map);
+				  }}).addTo(map);
 				
 			} else {
 			
