@@ -157,9 +157,17 @@
 				tempPoint = null;
 			}
 			
-			geojson = L.geoJson(tempPoint).addTo(map);
 		
 			
+			console.log(tempPoint);
+			
+			tempPoint.properties = {
+				'id' : data[i][0],
+				'insertedtime' : data[i][2],
+				'positiontime' : data[i][3]
+			}
+			console.log(tempPoint);
+			geojson = L.geoJson(tempPoint).addTo(map);
 		}
 
 	});
