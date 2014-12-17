@@ -144,19 +144,7 @@
 	$.getJSON('/datapi/langeland/rawdatahours/', function (data) {
 		var table = $("#resbody");
 		for (i=0; i<data.length; i++) {
-			
-			
-			
-			$("#resbody").append(
-				"<tr>"+
-            "<td>" + data[i][0] + "</td>" +
-            "<td>" + data[i][1] +"</td>" +
-           	"<td>" + data[i][2] + "</td>" +
-            "<td>" + data[i][3] + " s</td>" +
-          "</tr>"
-
-			);
-		 
+			L.geoJson(data[i][1]).addTo(map);
 		}
 
 	});
