@@ -115,6 +115,28 @@
 					</div>
                     <!-- /.panel -->
                 </div>
+                
+                  <div class="panel panel-default" >
+					  <!-- Default panel contents -->
+					  <div class="panel-heading">Position updates</div>
+
+					  <!-- Table -->
+					  <table class="table">
+							<thead>
+							  <tr>
+								<th>#</th>
+								<th>Position</th>
+								<th>Inserted time</th>
+								<th>Position time</th>
+							  </tr>
+							</thead>
+							<tbody id="resbody2">
+							 
+							</tbody>
+						  </table>
+					</div>
+                    <!-- /.panel -->
+                </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
@@ -162,18 +184,40 @@
           
 			$("#resbody").append(
 				"<tr>"+
-            "<td>" + data[i][0] + "</td>" +
-            "<td>" + data[i][1] +"</td>" +
-           	"<td>" + data[i][2] + "</td>" +
-            "<td>" + data[i][3] + " s</td>" +
-          "</tr>"
+	        		"<td>" + data[i][0] + "</td>" +
+				"<td>" + data[i][1] +"</td>" +
+		           	"<td>" + data[i][2] + "</td>" +
+			        "<td>" + data[i][3] + " s</td>" +
+			        "</tr>"
 
 			);
 		 
 		}
 
 	});
+	function getDataForInterval() {
+		var start = '2014-12-16 06:00:00';
+		var end = '2014-12-17 23:00:00';
+		$.getJSON('/datapi/langeland/rawdataoninterval/?starttime=' + start + '&endtime=' +end, function (data) {
+			var table = $("#resbodyselect");
+			for (i=0; i<data.length; i++) {
+	          
+				$("#resbody2").append(
+					"<tr>"+
+			        	"<td>" + data[i][0] + "</td>" +
+			        	"<td>" + data[i][1] +"</td>" +
+			           	"<td>" + data[i][2] + "</td>" +
+				        "<td>" + data[i][3] + " s</td>" +
+				        "</tr>"
 	
+				);
+			 
+			}
+
+		});
+	}
+	getDataForInterval();
+
 	
 	
     </script>
