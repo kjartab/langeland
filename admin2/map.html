@@ -150,7 +150,7 @@
 		var table = $("#resbody");
 		for (i=0; i<data.length; i++) {
 			console.log(data[i]);
-			geojson = L.geoJson(data[i][1]).addTo(map);
+			geojson = L.geoJson(JSON.parse(data[i][1])).addTo(map);
 		}
 
 	});
