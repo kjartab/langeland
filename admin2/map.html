@@ -195,11 +195,12 @@
 	function getMarkerOptions(properties) {
 		console.log(properties.insertedtime);
 		console.log(convertTime(mostRecent) - convertTime(properties.insertedtime));
+		var timeDiff = convertTime(mostRecent) - convertTime(properties.insertedtime);
 		var fillColor = '#ff7800';
 		var color = '#000';
 		console.log(mostRecent);
 		return {
-			radius: 8,
+			radius: 8 /Math.log(timeDiff/1000),
 			fillColor: fillColor,
 			color: color,
 			weight: 1,
