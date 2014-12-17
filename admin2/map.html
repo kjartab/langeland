@@ -157,10 +157,8 @@
 				tempPoint = null;
 			}
 			
-		
-			
-			console.log(tempPoint);
-			
+			if (tempPoint != null) {
+				
 			tempPoint.properties = {
 				'id' : data[i][0],
 				'insertedtime' : data[i][2],
@@ -168,6 +166,12 @@
 			}
 			console.log(tempPoint);
 			geojson = L.geoJson(tempPoint).addTo(map);
+				
+			}
+			
+			console.log(tempPoint);
+			
+			
 		}
 
 	});
