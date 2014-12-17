@@ -20,6 +20,11 @@
     <!-- DataTables CSS -->
     <link href="css/plugins/dataTables.bootstrap.css" rel="stylesheet">
 
+    
+    
+    <link href="/assets/lib/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet">
+    
+    
     <!-- Custom CSS -->
     <link href="css/sb-admin-2.css" rel="stylesheet">
 
@@ -138,9 +143,14 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
+                
+                <div class='col-lg-12'>
+                	
+                	<div id='datepicker'></div>
+                </div>
             </div>
         <!-- /#page-wrapper -->
-
+	
     </div>
     <!-- /#wrapper -->
 
@@ -157,13 +167,14 @@
     <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
 
+    <script src="/assets/lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
 
-	
+	$('#datepicker').datepicker();
 	
 	$.getJSON('/datapi/langeland/rawdatahours/', function (data) {
 		var table = $("#resbody");
