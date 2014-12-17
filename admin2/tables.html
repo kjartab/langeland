@@ -180,7 +180,7 @@
 	
 	
 	
-	$.getJSON('../data/inserted/?numpoints=100&order=desc', function (data) {
+	$.getJSON('/datapi/langeland/rawdatahours/', function (data) {
 		var table = $("#resbody");
 		for (i=0; i<data.length; i++) {
           
