@@ -161,14 +161,15 @@
 			
 			if (tempPoint != null) {
 				
-				if (mostRecent == null) {
-					mostRecent = properties.insertedtime;
-				}
 				console.log(tempPoint);
 				tempPoint.properties = {
 					'id' : data[i][0],
 					'insertedtime' : data[i][2],
 					'positiontime' : data[i][3]
+				}
+				
+				if (mostRecent == null) {
+					mostRecent = tempPoint.properties.insertedtime;
 				}
 				geojson = L.geoJson(tempPoint, {
 					onEachFeature: onEachFeature,
