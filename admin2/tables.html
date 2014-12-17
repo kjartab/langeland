@@ -198,8 +198,7 @@
 
 
 
-	$('#datepicker').datepicker();
-	$('#datepicker').on('click', function() {console.log($('#datepicker').datepicker())});
+
 	$.getJSON('/datapi/langeland/rawdatahours/', function (data) {
 		var table = $("#resbody");
 		for (i=0; i<data.length; i++) {
