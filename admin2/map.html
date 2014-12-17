@@ -153,7 +153,7 @@
 			tempPoint = JSON.parse(data[i][1]);
 			
 			if (typeof tempPoint === 'undefined' || tempPoint == null) {
-				tempPoint = JSON.parse('"{"type":"Point","coordinates":[5.85,61.5,387.5]}"')
+				tempPoint = JSON.parse('"{"type":"Point","coordinates":[5.85,61.5,387.5]}"');
 			}
 			tempPoint.properties = {
 				'id' : data[i][0],
