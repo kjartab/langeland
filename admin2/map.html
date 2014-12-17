@@ -55,7 +55,7 @@
    
             <!-- /.navbar-top-links -->
  
-		  	  <div class="navbar-default sidebar" role="navigation">
+		  <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
@@ -73,10 +73,10 @@
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a class="active" href="tables.html"><i class="fa fa-table fa-fw"></i> Raw data</a>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Raw data</a>
                         </li>
 						<li>
-                            <a href="map.html"><i class="fa fa-table fa-fw"></i> Raw data</a>
+                            <a class="active" href="map.html"><i class="fa fa-table fa-fw"></i> Raw data</a>
                         </li>
                     </ul>
                 </div>
@@ -94,38 +94,12 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default" >
-					  <!-- Default panel contents -->
-					  <div class="panel-heading">Position updates</div>
-
-					  <!-- Table -->
-					  <table class="table">
-							<thead>
-							  <tr>
-								<th>#</th>
-								<th>Position</th>
-								<th>Inserted time</th>
-								<th>Position time</th>
-							  </tr>
-							</thead>
-							<tbody id="resbody">
-							 
-							</tbody>
-						  </table>
-					</div>
-                    <!-- /.panel -->
+                    <div id="map"></div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
 			
-			
-					
-		<div class="row">
-			<div class="col-lg-12">
-				<div id="map"></div>
-			</div>
-		</div>
 			
             
             <!-- /.row -->
@@ -154,26 +128,25 @@
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
 
+	
+	$(window).resize(function () {
+		var h = $(window).height(),
+			offsetTop = 55; // Calculate the top offset
+		var top = $("#top").height();
+		$("#map").css('height', $(window).height()-offsetTop);
+	}).resize();
+	
+	
 	var map = L.map('map').setView([61.3999272955946,5.76203078840252], 13);
 	
 	map.addLayer(L.tileLayer.wms("http://opencache.statkart.no/gatekeeper/gk/gk.open?",{layers: 'topo2graatone', format: 'image/png'},{attribution:''}));
-	
-	map.on('layeradd', function(e) {
 
-		if (e.layer.feature) {
-			idMap.push({
-				sid : e.layer.feature.properties.sid,
-				lid : e.layer._leaflet_id
-			});
-		}
-	});
-	
-	
-	
 	$.getJSON('/datapi/langeland/rawdatahours/', function (data) {
 		var table = $("#resbody");
 		for (i=0; i<data.length; i++) {
-          
+			
+			
+			
 			$("#resbody").append(
 				"<tr>"+
             "<td>" + data[i][0] + "</td>" +
