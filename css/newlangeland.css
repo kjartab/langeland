@@ -236,45 +236,6 @@
 		}
 	}
 
-	.btn-circle {
-		width: 70px;
-		height: 70px;
-		margin-top: 15px;
-		padding: 7px 16px;
-		border: 2px solid #fff;
-		border-radius: 35px;
-		font-size: 40px;
-		color: #fff;
-		background: 0 0;
-		-webkit-transition: background .3s ease-in-out;
-		-moz-transition: background .3s ease-in-out;
-		transition: background .3s ease-in-out;
-	}
-
-	.btn-circle:hover,
-	.btn-circle:focus {
-		outline: 0;
-		color: #fff;
-		background: rgba(255,255,255,.1);
-	}
-
-	.btn-circle i.animated {
-		-webkit-transition-property: -webkit-transform;
-		-webkit-transition-duration: 1s;
-		-moz-transition-property: -moz-transform;
-		-moz-transition-duration: 1s;
-	}
-
-	.btn-circle:hover i.animated {
-		-webkit-animation-name: pulse;
-		-moz-animation-name: pulse;
-		-webkit-animation-duration: 1.5s;
-		-moz-animation-duration: 1.5s;
-		-webkit-animation-iteration-count: infinite;
-		-moz-animation-iteration-count: infinite;
-		-webkit-animation-timing-function: linear;
-		-moz-animation-timing-function: linear;
-	}
 
 	@-webkit-keyframes pulse {    
 		0 {
@@ -310,57 +271,11 @@
 		}
 	}
 
-	#loype-button {
-		display: inline-block;
-		position: relative;
-		float: left;
-		z-index: 10000;
-		height: 20px;
-		width: 80px;
-		background-color: #555555;
-		
-
-		-webkit-transform: rotate(90deg);
-		-moz-transform: rotate(90deg);
-		-ms-transform: rotate(90deg);
-		-o-transform: rotate(90deg);
-		transform: rotate(90deg);
-
-		/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
-
-
-		transform-origin: 17% 50%;
-
-		/* Should be unset in IE9+ I think. */
-		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-
-	}
-	
 	
 	.rotate-button {
 		
 	}
 	
-	.content-section {
-		min-height: 70%;
-		color: #eeeeee;
-		padding-top: 100px;
-		height: auto;
-		
-	}
-
-	.download-section {
-		width: 100%;
-		padding: 50px 0;
-		color: #fff;
-		background: url(../img/downloads-bg.jpg) no-repeat center center scroll;
-		background-color: #000;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		background-size: cover;
-		-o-background-size: cover;
-	}
-
 	#map {
 		width: 100%;
 		height: 200px;
@@ -522,47 +437,6 @@
 	}
 	
 	
-	.topbox {
-		background: rgba(244,244,244);
-		text-align: left;
-		margin: 50px;
-		margin-left: 15%;
-		margin-right: 15%;
-		color: #121212;
-		padding-bottom: 10px;
-		padding-right: 10px;
-		height: auto;
-		min-width: 40px;
-		width: auto;
-		background-color: #ffffff;
-		opacity:0.85;
-	}
-	
-	.news {
-		margin-right: 200px;
-		margin-left: 0;
-	}
-	
-
-	.topbox h1 {
-		margin: 0;
-		opacity: 1;
-		color: #121212;
-		padding: 50px;
-	}
-	.topbox h2, .topbox h3, .topbox h4, .topbox h5, .topbox h6 {
-		display:inline-block;
-		background: #232323;
-		margin: 0;
-		opacity: 1;
-		padding: 10px;
-		color: #efefef;
-	}
-	
-	.topbox p {
-		padding: 30px;
-	}
-	
 
 	
 	.news p {
@@ -682,7 +556,50 @@
 		text-align: center;
 		width = 33%;
 	
-	
+	}
 	/* Track section */
 	
+	/* Top section */
+	
+	
+	.topbox {
+		background: rgba(244,244,244);
+		text-align: left;
+		margin: 50px;
+		margin-left: 15%;
+		margin-right: 15%;
+		color: #121212;
+		padding-bottom: 10px;
+		padding-right: 10px;
+		height: auto;
+		min-width: 40px;
+		width: auto;
+		background-color: #ffffff;
+		opacity:0.85;
+	}
+	
+	.news {
+		margin-right: 200px;
+		margin-left: 0;
+	}
+	
+
+	.topbox h1 {
+		margin: 0;
+		opacity: 1;
+		color: #121212;
+		padding: 50px;
+	}
+	.topbox h2, .topbox h3, .topbox h4, .topbox h5, .topbox h6 {
+		display:inline-block;
+		background: #232323;
+		margin: 0;
+		opacity: 1;
+		padding: 10px;
+		color: #efefef;
+	}
+	
+	.topbox p {
+		padding: 30px;
+	}
 	

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="css/plugins/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="/assets/lib/leaflet/leaflet.css" rel="stylesheet">
+
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+            <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">LAdmin</a>
+            </div>
+            <!-- /.navbar-header -->
+
+   
+            <!-- /.navbar-top-links -->
+ 
+		  	  <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Raw data</a>
+                        </li>
+						<li>
+                            <a href="map.html"><i class="fa fa-location-arrow fa-fw"></i> Map view</a>
+                        </li>
+                        <li>
+                            <a href="input.html"><i class="fa fa-edit fa-fw"></i> Add data</a>
+                        </li>
+						<li>
+							<a class="active" href="edit.html"><i class="fa fa-edit fa-fw"></i> Edit tracks</a>
+						</li>
+                        <li>
+                            <a href="settings.html"><i class="fa fa-cogs fa-fw"></i> Settings</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+
+        <div id="page-wrapper">
+		<div class="row" id="toprow">
+			<div class="col-lg-12">
+				<h3 class="page-header">Add data</h3>
+			</div>
+				   
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+				 
+						<div class="form-group">
+							<div class='input-group date' id='datetimepicker1'>
+								<input type='text' class="form-control" />
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+								</span>
+							</div>
+						</div> 
+				 
+				   
+                </div>
+                <div class="col-lg-8">
+					<div id="map"></div>
+                </div>
+				
+				
+            </div>
+            
+	
+			
+			
+        </div>
+			<!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="/assets/lib/leaflet/leaflet.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/sb-admin-2.js"></script>
+
+	
+	  <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+
+	$(function () {
+		$('#datetimepicker1').datetimepicker();
+	});
+$(window).resize(function () {
+		var h = $(window).height(),
+			offsetTop = 55; // Calculate the top offset
+		var top = $("#top").height();
+		$("#map").css('height', $(window).height()-offsetTop);
+	}).resize();
+	
+	var geojson;
+	var map = L.map('map').setView([61.3999272955946,5.76203078840252], 13);
+	var emptyData;
+	var mostRecent;
+	map.addLayer(L.tileLayer.wms("http://opencache.statkart.no/gatekeeper/gk/gk.open?",{layers: 'topo2graatone', format: 'image/png'},{attribution:''}));
+
+	$.getJSON('/datapi/langeland/rawdatahours/', function (data) {
+		var table = $("#resbody");
+		var tempPoint;
+		for (i=0; i<data.length; i++) {
+			
+			tempPoint = null;
+			try {
+				tempPoint = JSON.parse(data[i][1]);
+			} catch (error) {
+				console.log(error);
+				tempPoint = null;
+			}
+			
+			if (tempPoint != null) {
+				
+				console.log(tempPoint);
+				tempPoint.properties = {
+					'id' : data[i][0],
+					'insertedtime' : data[i][2],
+					'geom' : data[i][1],
+					'positiontime' : data[i][3]
+				}
+				
+				if (mostRecent == null) {
+					mostRecent = tempPoint.properties.insertedtime;
+				}
+				geojson = L.geoJson(tempPoint, {
+					onEachFeature: onEachFeature,
+					 pointToLayer: function (feature, latlng) {
+				       return L.circleMarker(latlng, getMarkerOptions(tempPoint.properties));
+				  }}).addTo(map);
+				
+			} else {
+			
+				
+			
+				
+			}
+			
+			console.log(tempPoint);
+			
+			
+		}
+
+	});
+	
+	
+	function getMarkerOptions(properties) {
+		console.log(properties.insertedtime);
+		console.log(convertTime(mostRecent) - convertTime(properties.insertedtime));
+		var timeDiff = convertTime(mostRecent) - convertTime(properties.insertedtime);
+		var fillColor = '#ff7800';
+		var color = '#000';
+		console.log(mostRecent);
+		return {
+			radius: 5/(Math.log(timeDiff)/10),
+			fillColor: fillColor,
+			color: color,
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8
+		}
+	}
+	
+	function onEachFeature(feature, layer) {
+	        layer.bindPopup(feature.properties.id + '<br>Inserted: ' + feature.properties.insertedtime + '<br>Geom: ' + feature.properties.geom);
+	    
+	}
+
+	
+	function convertTime(ts) {
+		var time = new Date(1970,01,01,0,0,0,0);
+		if (ts) {
+			time = new Date(ts.substr(0,4),ts.substr(5,2)-1,ts.substr(8,2),ts.substr(11,2),ts.substr(14,2),ts.substr(17,2),0);
+		}
+		return time;
+	}
+		
+	
+	
+	
+    </script>
+
+</body>
+
+</html>
