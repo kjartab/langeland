@@ -272,7 +272,9 @@
 			
 	function populateList(trackList) {
 		console.log(trackList);
-		trackList.sort(function(a,b) {return a.trackLength - b.trackLength});
+		trackList.sort(function(a,b) {
+		console.log(a);
+		console.log(b);return a.trackLength - b.trackLength});
 	
 		for (var i=0; i<trackList.length; i++) {
 			$("#trackbody").append(buildStatusBar(trackList[i]));
