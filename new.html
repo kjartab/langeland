@@ -252,7 +252,10 @@ $('.navbar-collapse ul li a').click(function() {
 	});
 			
 	function populateList(trackList) {
-		trackList.sort(function(a,b) {return a.trackLength - b.trackLength});
+		trackList.sort(function(a,b) {
+			console.log(a);
+			console.log(b);
+			return a.trackLength - b.trackLength});
 	
 		for (var i=0; i<trackList.length; i++) {
 			$("#tracklist").append(buildStatusBar(trackList[i]));
