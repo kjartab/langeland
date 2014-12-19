@@ -271,6 +271,7 @@
 	});
 			
 	function populateList(trackList) {
+		console.log(trackList);
 		trackList.sort(function(a,b) {return a.trackLength - b.trackLength});
 	
 		for (var i=0; i<trackList.length; i++) {
