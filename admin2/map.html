@@ -175,7 +175,7 @@
 	var emptyData;
 	var mostRecent;
 	map.addLayer(L.tileLayer.wms("http://opencache.statkart.no/gatekeeper/gk/gk.open?",{layers: 'topo2graatone', format: 'image/png'},{attribution:''}));
-
+	function getData() {
 	$.getJSON('/datapi/langeland/rawdatahours/', function (data) {
 		var table = $("#resbody");
 		var tempPoint;
@@ -221,7 +221,9 @@
 		}
 
 	});
-	
+	}
+
+	getData()
 	
 	function getMarkerOptions(properties) {
 		console.log(properties.insertedtime);
