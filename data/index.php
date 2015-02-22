@@ -13,6 +13,8 @@ require_once('includes/db.php');
 	$dbWriter = new DatabaseRestricted($db);
 	$request = $requestObj->getRequest();
 
+    return 'test';
+    exit();
 		
 		$data = $requestObj->getData();
 		switch( $requestObj->getMethod() ) {
@@ -26,7 +28,7 @@ require_once('includes/db.php');
 				
 				// if data -> show overview 	
 				
-				if (count($request) > 3 AND $request[2] == 'data') {
+				if (count($request) > 3) {
 			
 					switch($request[3]) {
 					
@@ -46,6 +48,14 @@ require_once('includes/db.php');
 						case 'spatiotemporal':
 
 							$res = $dbHelper->getGeoJsonTracks();
+							
+							echo $res;
+							break;
+							
+							
+						case 'spatiotemporalewkb':
+
+							$res = $dbHelper->getTemporalTracksEWKB();
 							
 							echo $res;
 							break;
@@ -70,12 +80,62 @@ require_once('includes/db.php');
 							echo $res;
 							break;
 							
+						case 'trackobjects':
+						
+							$res = $dbHelper->getTrackObjects();
+							echo $res;
+							break;
+							
 						case 'segments':
 
 							$res = $dbHelper->getSegmentsWKB();
 							
 							echo $res;
 							break;
+						
+						case 'segmentswkbandid':
+
+							$res = $dbHelper->getSegmentswkbandid();
+							
+							echo $res;
+							break;
+							
+						case 'rawdatahours': 
+							
+							$table = getVariable($_GET,'table', 'rawpositiondata');
+							$hours =  getVariable($_GET,'hours', 24);
+							$limit = getVariable($_GET, 'limit', 100);
+							$order = getVariable($_GET, 'order', 'desc');
+							
+							$res = $dbHelper->getRawDataHours($table, $limit, $order, $hours);
+							
+							echo $res;
+							
+							
+							break;
+							
+						case 'rawdataoninterval':
+						
+							$table = getVariable($_GET,'table', 'rawpositiondata');
+							$startTime =  getVariable($_GET,'starttime', '2014-12-13 00:00:00');
+							$endTime =  getVariable($_GET,'endtime', '2014-12-14 00:00:00');
+							$limit = getVariable($_GET, 'limit', 100);
+							$order = getVariable($_GET, 'order', 'desc');
+							
+							$res = $dbHelper->getRawDataOnInterval($table, $limit, $order, $startTime, $endTime);
+							echo $res;
+							break;
+						
+						break;
+						
+						case 'segments32632':
+
+							$res = $dbHelper->getSegmentss32632();
+							
+							echo $res;
+							break;	
+							
+							
 						default:
 						
 								echo 'nothing	 ';
@@ -85,7 +145,7 @@ require_once('includes/db.php');
 					}
 					
 				} else {
-					header("Location: /langeland-dev/data/data.html");
+					header("Location: /data/langeland/data.html");
 					die();
 					
 				} 
@@ -100,9 +160,11 @@ require_once('includes/db.php');
 				$postdata = $_POST["data"];
 				// Ensure login credentials are correct
 					
+					file_put_contents('postlog.txt', $postdata);
 					$dbWriter->connect();
 					$dbWriter->insertTrackingPosition($postdata);
 
+					print_r($postdata);
 					Controller::respond(200);
 			
 				break;
@@ -117,5 +179,11 @@ require_once('includes/db.php');
 				Controller::respond( 405 );
 				break;
 	}
+	
+	
+	function getVariable($list, $id, $default) {
+		return empty($list[$id]) ? $default : $list[$id];
+	}
+
 	
 	exit;

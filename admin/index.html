@@ -1,263 +1,260 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
-  <head>
+<html lang="en">
+
+<head>
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
-    <title>Langeland</title>
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <link href="/assets/lib/leaflet/leaflet.css" rel="stylesheet">
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <link href="../css/langelandfull.css" rel="stylesheet">
-    <link href="../css/frontbox.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
 
+    <!-- Timeline CSS -->
+    <link href="css/plugins/timeline.css" rel="stylesheet">
 
-  </head>
-<!-- NAVBAR
-================================================== -->
+    <!-- Custom CSS -->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
 <body>
 
+    <div id="wrapper">
 
-    <script src="/assets/lib/jquery/jquery-2.1.1.min.js"></script>
-    <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/assets/lib/leaflet/leaflet.js"></script>
-    <script src="/assets/common/extras/statusBarMadness.js"></script>
-    <script src="/assets/common/mapApps/langeland.js"></script>
+            <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">LAdmin</a>
+            </div>
+            <!-- /.navbar-header -->
 
-<div class="panel panel-default" >
-  <!-- Default panel contents -->
-  <div class="panel-heading">Position updates</div>
+   
+            <!-- /.navbar-top-links -->
+ 
+		  	  <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a class="active" href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Raw data</a>
+                        </li>
+						<li>
+                            <a href="map.html"><i class="fa fa-location-arrow fa-fw"></i> Map view</a>
+                        </li>
+                        <li>
+                            <a href="input.html"><i class="fa fa-edit fa-fw"></i> Add data</a>
+                        </li>
+						<li>
+							<a href="edit.html"><i class="fa fa-edit fa-fw"></i> Edit tracks</a>
+						</li>
+                        <li>
+                            <a href="settings.html"><i class="fa fa-cogs fa-fw"></i> Settings</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
 
-  <!-- Table -->
-  <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Position</th>
-            <th>Timestamp</th>
-            <th>Age</th>
-          </tr>
-        </thead>
-        <tbody id="resbody">
-         
-        </tbody>
-      </table>
-</div>
-
-<div id="innhald">
-
-		<div class="navbar-default navbar-fixed-top" id="navbar">
-
-			<div class="navbar-header col-lg-2">
-			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-				   <span class="icon-bar"></span>
-				   <span class="icon-bar"></span>
-			  </button>
-			  <a class="navbar-brand" href="../">Langeland Skisenter</a>
-			</div>
-				<div class="navbar-collapse collapse col-lg-10">
-					<ul class="nav navbar-nav">
-
-						<li><a href="#innhald">HEIM</a></li>
-						<li><a href="#loyper">LØYPER</a></li>
-						<li><a href="#ver">VER</a></li>
-						<li><a href="#kamera">KAMERA</a></li>
-						<li><a href="#sponsor">SPONSOR</a></li>
-						<li><a href="#kontakt">KONTAKT</a></li>
-
-					</ul>
-					
-
-				</div><!--/.nav-collapse -->
+        <div id="page-wrapper">
+            <div class="row">
+                  <div class="col-lg-12">
+                    <h3 class="page-header">Dashboard</h3>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-clock-o fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">26</div>
+                                    <div>Sist oppdatering</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">12</div>
+                                    <div>New Tasks!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">124</div>
+                                    <div>New Orders!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-dot-circle-o fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">13</div>
+                                    <div>Support Tickets!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
 			
-		</div>
-
-
-
-</div>
-
-	<div id="loyper">
+			
+               
+            <div class="row" id="tracks">
+				 <div class="col-lg-12">
+					<div id="map"></div>
+                </div>
+            </div>
+            <!-- /.row -->
 	
-	<div class="row">
-	<div class="col-lg-2">
+			
+			
+        </div>
+        <!-- /#page-wrapper -->
 
-		 <table class="table">
-        <thead>
-          <tr>
-            <th>Løype</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody id="trackbody">
-         
-        </tbody>
-      </table>
-
-	</div>
-	<div class="col-lg-10">
-		<div id="map"></div>
-</div>
-	
-	
-</div>
-
-	<!-- CAMERA SECTION -->
-		
-    <div id="kamera">
-
-		<div id="kamera-content">
-
-			<div class="col-md-3"
-			  <p class="lead">Kameraet er plassert på skihytta og vender ut mot skistadion. Tenesta er levert av Firda og Enivest.</p>
-			</div>
-			<div class="col-md-9">
-			  <img class="image img-responsive" src="http://37.44.172.66/axis-cgi/jpg/image.cgi?resolution=1024x768" alt="Generic placeholder image">
-			</div>
-		</div>
-
-	</div>
-
-	<!-- WEATHER SECTION -->
-	
-
-
-    </div><!-- /.container -->
-</div>
-
-
-
-    <div class="footer">
-		<div class="container">
-
-			<div class="col-md-4" id="kontakt">
-					<h4>KONTAKTINFO</h4>
-
-					<h4>Epost</h4>
-					<p>kontakt@langelandskisenter.no</p>
-
-					<h4>Kontaktperson</h4>
-
-					<p>Kjetil Bjørset</p>
-					<p>91312250</p>
-			</div>
-
-			<div class="col-md-4" id="sosialmedia">
-				<h4>SOSIALE MEDIA</h4>
-				<p>Du kan også finne oss på Google+ og Facebook<p>
-			</div>
-
-			<div class="col-md-4" id="test">
-
-			</div>
-
-		</div>
     </div>
+    <!-- /#wrapper -->
 
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
 
-  <script>
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
 
+    <!-- Custom Theme JavaScript -->
+    <script src="js/sb-admin-2.js"></script>
 
-	$(window).ready(function() {
-
-		var contentwidth = $('#heim').width();
-		if ((contentwidth) < 720){
-			$('.fullscreen-img').css('background', 'color: #444444');
-		} else if ((contentwidth) < 996){
-			$('.fullscreen-img').css('background', 'url(img/bglang-996.jpg)');
-		}
-	});
+    <script src="/assets/lib/leaflet/leaflet.js"></script>
+	
+    <script src="../js/langeland/statusBar.js"></script>
+    <script src="../js/langeland/TemporalColor.js"></script>	
+    <script src="../js/langeland/langeland.js"></script>
+    <script src="../js/langeland/TimeModule.js"></script>
+	
+	<script>
+	
+	
 
 	$(window).resize(function () {
 		var h = $(window).height(),
 			offsetTop = 55; // Calculate the top offset
 		var top = $("#top").height();
-		$("#map").css('height', $(window).height()-offsetTop);
+			$("#map").css('height', $(window).height()*0.85-offsetTop);
+			$("#tracks").css('height', $(window).height());
+			$("#tracks").css('padding-top', $(window).height()*0.075+offsetTop);
+			$("#tracks").css('padding-bottom', $(window).height()*0.075);
+		
 	}).resize();
 	
-	lang.init();
+	
+	LS = LS || {};
+	LS.temporalColor.init();
+	LS.app.init('#map', LS.temporalColor);
 	
 	
 
-	$.getJSON('/data/langeland/spatiotemporal', function (data) {
+	$.getJSON('/datapi/langeland/spatiotemporal', function (data) {
 	var time = new Date();
-		lang.addSegments(JSON.parse(data));
+		LS.app.addSegments(JSON.parse(data));
 		console.log(new Date() - time);
 		loadTrackData();
 	});
 	
 	
-	function loadTrackData() {
-	
-		$.getJSON('/data/langeland/trackobjects', function (data) {
-			
-			for (var i=0; i<data.length; i++) {
-				lang.addTrackObjects(JSON.parse(data[i]));
-			}
-			populateList(lang.getTracks());
-		
-		});
-	
-	}
-	
-	
-	/*
-	
-	Frontend thingies
-	
-	*/
-		
-	$("#trackbody").on('mouseover', 'tr', function () {
-		lang.highlightTrack(this.id.substr(4));
-	});
-
-	$("#trackbody").on('mouseout', 'tr', function () {
-		lang.resetAllStyles();
-	});
-			
-	function populateList(trackList) {
-		trackList.sort(function(a,b) {console.log(a.trackLength + ' '+ b.trackLength);return a.trackLength - b.trackLength});
-		
-		for (var i=0; i<trackList.length; i++) {
-					
-			
-			
-			$("#trackbody").append(buildStatusBar(trackList[i]));
-		
-		
-		}
-	}
-	
-
-		
-	$.getJSON('../data/inserted/?numpoints=100&order=desc', function (data) {
-		var table = $("#resbody");
-		for (i=0; i<data.length; i++) {
-          
-			$("#resbody").append(
-				"<tr>"+
-            "<td>" + data[i][0] + "</td>" +
-            "<td>" + data[i][1] +"</td>" +
-           	"<td>" + data[i][2] + "</td>" +
-            "<td>" + data[i][3] + " s</td>" +
-          "</tr>"
-
-			);
-		 
-		}
-
-	});
-
-
-
-
-</script>
-
-
+	</script>
 </body>
+
 </html>
