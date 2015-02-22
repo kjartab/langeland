@@ -2,7 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
-require_once('includes/api.lib.php');
+
+require_once('includes/api.lib.php'); 
 require_once('includes/DatabaseHelper.php');
 require_once('includes/DatabaseRestricted.php');
 require_once('includes/db.php');
@@ -13,7 +14,6 @@ require_once('includes/db.php');
 	$dbWriter = new DatabaseRestricted($db);
 	$request = $requestObj->getRequest();
 
-		
 		$data = $requestObj->getData();
 		switch( $requestObj->getMethod() ) {
 			case 'get':
@@ -63,6 +63,19 @@ require_once('includes/db.php');
 							$res = $dbHelper->getTrackSegments();
 							
 							echo $res;
+							break;
+                        case 'test':
+                            
+                            $url = "http://api.yr.no/weatherapi/locationforecast/1.9/?lat=61.3999272955946;lon=5.76203078840252";
+                            $res = getURL($url);
+                            echo $res;
+                            break;
+                        
+						case 'weather':
+                            
+                            $url = "http://api.yr.no/weatherapi/locationforecast/1.9/?lat=61.3999272955946;lon=5.76203078840252";
+                            echo getWeatherInfo($url);
+							
 							break;
 
 						case 'inserted':
@@ -149,39 +162,65 @@ require_once('includes/db.php');
 				} 
 				
 				
-				if (!$res) {
-					echo 'no result';
-				} 
 				break;
 				
-			case 'post':
-				$postdata = $_POST["data"];
-				// Ensure login credentials are correct
-					
-					file_put_contents('postlog.txt', $postdata);
-					$dbWriter->connect();
-					$dbWriter->insertTrackingPosition($postdata);
-
-					print_r($postdata);
-					Controller::respond(200);
-			
-				break;
-				
-			case 'put':
-				break;
-				
-			case 'delete':
-				break;
 				
 			default:
 				Controller::respond( 405 );
 				break;
 	}
-	
-	
-	function getVariable($list, $id, $default) {
-		return empty($list[$id]) ? $default : $list[$id];
-	}
+    
+                
+    function getURL($url, $urlvars = null) {
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt ($ch, CURLOPT_HTTPHEADER, Array("Content-Type: application/xml"));
+        
+        $res = curl_exec($ch);
+        
+        curl_close($ch);
+        return $res;
+    }
+        
+    function getWeatherInfo($url) {
+        // store a string
+		$c = new Cache();
+        $c->store('hello', 'Hello World!');
 
-	
-	exit;
+        // generate a new cache file with the name 'newcache'
+        $c->setCache('newcache');
+        $url = "http://api.yr.no/weatherapi/locationforecast/1.9/?lat=61.3999272955946;lon=5.76203078840252";
+        
+        // store an array
+        $c->store('movies', array(
+          'description' => 'Movies on TV',
+          'action' => array(
+            'Tropic Thunder',
+            'Bad Boys',
+            'Crank'
+          )
+        ));
+
+        // get cached data by its key
+        $result = $c->retrieve('movies');
+
+        // display the cached array
+        echo '<pre>';
+        print_r($result);
+        echo '<pre>';
+
+        // grab array entry
+        $description = $result['description'];
+
+        // switch back to the first cache
+        $c->setCache('mycache');
+
+        // update entry by simply overwriting an existing key
+        $c->store('hello', 'Hello everybody out there!');
+
+        // erase entry by its key
+        $c->erase('hello');
+    }
+  

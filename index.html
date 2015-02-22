@@ -8,7 +8,9 @@
 
     <link href="/assets/lib/leaflet/leaflet.css" rel="stylesheet">
     <link href="/assets/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
     <link href="css/newlangeland.css" rel="stylesheet">
+    <link href="css/langeland.css" rel="stylesheet">
     <link href="/assets/lib/bootstrap/extensions/grayscale/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
 
@@ -67,38 +69,45 @@
 	
 	
 	<!-------TOP SECTION ------->
-
-	 <header class="intro">
-        <div class="intro-body">
-			<div class="row">  
-				 	<div class="col-md-3">
-                        <a href="#loyper">
-							<div id="weather" class="topbox">
-									<h4>Veret no</h4>
-									<p>17 </p>
-							</div>
-						</a>
-						
-						<a href="#ver">
-							
-							<div id="track-update" class="topbox">
-									<h4>Løyper</h4>
-									<p>Køyrd opp i dag!</p>
-							</div>
-						</a>
-						
+ <header id="top" class="header">
+        <div class="text-vertical-center">
+			<div id="home-info" class="col-lg-8 col-lg-offset-2 text-center">
+                <div class="col-lg-4">
+				<a class=" lang-home-container" href="#tracks">
+                    <div id="lang-tracks" class="lang-home-box">
+                        <h3>Løypestatus</h3>
+                        <h2>x km oppkøyrd i dag</h2>
+                    
                     </div>
-                    <div class="col-md-9">
-						<div class="topbox news">
-								<h4>Siste nytt</h4>
-								<h1>Status snøproduksjon</h1>
-								<p>Anlegget har vore i drift sidan kl 16 i dag (frose vassinntak hindra tidlegare start), men med dårleg resultat; mest sørpe og vatn, og lite snø. Anlegget vart stoppa no kl 2030. Då var det 5 minus, og utsikter til stigande temperatur. Det må vere 8-10 minus skal anlegget gi noko fornuftig resultat. I tillegg til stigande temperatur er det venta mykje vind, så vi lyt berre avvente. Det skal ikkje vere enkelt denne vinteren....På Sørlandet er det venta 1,5 m snø; kunne nokon ordne med litt fordeling!</p>
-						</div>
+				</a>
+                <a class="lang-home-container">
+                    <div id="lang-weather" class="lang-home-box">
+                        <h3>veret</h3>
+                        <div id="lang-weather-box">
+                            <div id="lang-temperature">
+                            </div>
+                            
+                            <div id="lang-weather-icon">
+                                <object data="data/weather.svg" type="image/svg+xml">
+                                </object>
+                            </div>
+                        </div>
+                    
                     </div>
-            </div>
-        </div>
+				</a>
+                </div>
+                 <a class="col-md-8 lang-home-container">
+                    <div id="lang-info" class="lang-home-box">
+                        <h3>Info</h3>
+                        <p>Vi er i ferd med å få opp nye nettsider. Løypeoppdateringar er i testperiode og vi kan ikkje garantere riktig info. Trykk for å lese meir. Vi er i ferd med å få opp nye nettsider. Løypeoppdateringar er i testperiode og vi kan ikkje garantere riktig info. Trykk for å lese meir</p>
+                    
+                    </div>
+				</a>
+				
+               
+			</div>
     </header>
-	
+        </div>
 	<!------- /.TOP SECTION ------->
 	
 	
@@ -132,12 +141,11 @@
 	
 	
 	
-
+http://37.44.172.66/axis-cgi/jpg/image.cgi?resolution=640x480
 	
 	<section id="contact" class="content-section">
 
-	<div class="row">
-		<div class="col-lg-9 col-lg-offset-3">
+	<div id="footer" class="col-lg-8 col-lg-offset-2 text-center">
 			<h3>Kontaktinfo</h3>
 			<p>Telefon: <a href="tel:+4791312250">91312250</a></p>
 			<p>Epost: <a href="mailto:feedback@startbootstrap.com">kontakt@langelandskisetner.no</a> </p>
@@ -151,7 +159,6 @@
 				</li>
 			</ul>
 		</div>
-	</div>
 
 	</section>
 
@@ -173,7 +180,31 @@
 
 
 <script>
-  
+
+var latitude = 61.3999272955946;
+var longitude = 5.76203078840252;
+
+function getWeather() {
+
+    $.ajax({
+        url: "data/weather.json",
+        type: 'GET',
+        dataType: "json",
+        success: function( data ) {
+            console.log(data);
+            setWeather(data);
+        }
+    });
+}
+
+getWeather();
+
+function setWeather(data) {
+    $('#lang-temperature').html('<h2>'+data.temperature+'&#176;C</h2>')
+}
+
+
+
 $(function() {
     $('a.page-scroll').bind('click', function(event) {
         var $anchor = $(this);
