@@ -13,8 +13,6 @@ require_once('includes/db.php');
 	$dbWriter = new DatabaseRestricted($db);
 	$request = $requestObj->getRequest();
 
-    echo 'test';
-    exit();
 		
 		$data = $requestObj->getData();
 		switch( $requestObj->getMethod() ) {
