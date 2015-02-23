@@ -4,6 +4,7 @@ LS.timeModule = (function() {
 	
 	function getTimeTextOld(timeString) {
 		var now = new Date();
+        
 		var time = convertTime(timeString);		
 		
 		var diff = now.getTime() - time.getTime();
@@ -32,7 +33,7 @@ LS.timeModule = (function() {
 	function getTimeText(timeString) {
 		var now = new Date();
 		var time = convertTime(timeString);		
-	
+        console.log(timeString);
 		return  time.getHours() + ':' +  (time.getMinutes()<10 ? '0' : '') + time.getMinutes()+ ' '  + time.getDate() + '. '  + monthName(time.getMonth());
 	
 		

@@ -45,6 +45,7 @@ LS.temporalColor = (function () {
 		if (alpha===0.5) {
 			chosen = simpleColors2;
 		}
+        
 		var time = convertTime(timeString);
 		var timeDiff = (new Date() - new Date(time))/1000;
 		

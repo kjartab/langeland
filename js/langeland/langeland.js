@@ -209,6 +209,7 @@ LS.app = (function (){
                             subSegmentTime : segments[i].properties.segmenttime
                             
                         });
+                        
                         this.trackSegments[trackSegmentId].segmentLength += segments[i].properties.length;
                         this.trackLength+= segments[i].properties.length;
                     }
@@ -216,10 +217,11 @@ LS.app = (function (){
 			}
             
             for (var trackSegmentId in this.trackSegments) {
-                
+                console.log(trackSegmentId);
                 if (this.trackSegments[trackSegmentId].isDefiningSegment) {
+                    console.log('defining');
                     var tempLength = 0;
-                    var segmentList = this.trackSegments[trackSegmentId];
+                    var segmentList = this.trackSegments[trackSegmentId].segments;
                     for (i=0; i<segmentList.length; i++) {
                         if (i==0) {
                             this.lastUpdate = segmentList[i].subSegmentTime;
@@ -229,6 +231,7 @@ LS.app = (function (){
                                 this.lastUpdate = segmentList[i].subSegmentTime;
                             }
                         }
+                        console.log(segmentList[i].subSegmentTime);
                         
                     }
                 }
@@ -238,6 +241,7 @@ LS.app = (function (){
         
 		
 		this.getLastUpdate = function() {
+            console.log(this.lastUpdate);
 			return this.lastUpdate;
 		}
         
