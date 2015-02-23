@@ -177,10 +177,10 @@ var lang = (function (divElement){
 					if (segments[i].properties.sid == this.segmentIds[j]) {
 						console.log(segments[i].properties);
 						this.trackLength += +segments[i].properties.length;
-						
+						cosnole.log(segments[i]);
 						this.status.push({
 							segmentLength : segments[i].properties.length,
-							segmentTime : segments[i].properties.segmenttime
+							segmentTime : segments[i].properties.segmenttime,
 						});
 					}
 				}
@@ -199,3 +199,7 @@ var lang = (function (divElement){
 		}
 
 	}
+    
+    function getLatestTrackUpdate() {
+        
+    }

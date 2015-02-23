@@ -175,7 +175,7 @@
 
 var latitude = 61.3999272955946;
 var longitude = 5.76203078840252;
-
+var url = "http://www.langelandskisenter.no/data";
 function getWeather() {
 
     $.ajax({
@@ -231,7 +231,7 @@ $('.navbar-collapse ul li a').click(function() {
 	
 	
 
-	$.getJSON('/datapi/langeland/spatiotemporal', function (data) {
+	$.getJSON(url + '/spatiotemporal', function (data) {
 	var time = new Date();
 		LS.app.addSegments(JSON.parse(data));
 		console.log(new Date() - time);
@@ -241,7 +241,7 @@ $('.navbar-collapse ul li a').click(function() {
 	
 	function loadTrackData() {
 	
-		$.getJSON('/datapi/langeland/trackobjects', function (data) {
+		$.getJSON(url + '/langeland/trackobjects', function (data) {
 			
 			for (var i=0; i<data.length; i++) {
 				LS.app.addTrackObjects(JSON.parse(data[i]));

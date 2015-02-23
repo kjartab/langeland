@@ -133,7 +133,7 @@ margin-right: auto;
 #trackinfo-container {
             z-index: 1000;
 			position: absolute;
-            min-width: 400px;
+            min-width: 315px;
             background-color: rgba(230,230,230,.85);
             width: 25%;
 		}

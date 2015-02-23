@@ -229,7 +229,6 @@ LS.app = (function (){
 				
 			}
 			
-			
 		}
 		
 		this.getLastUpdate = function() {
