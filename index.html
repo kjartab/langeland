@@ -122,7 +122,7 @@
 				<div class="track-container" id="track-header">
 					<div class="two-part-row">
 						<div class="track-container-left">
-							<h5>Løypeinformasjon</h5><i class="fa fa-bar-chart"></i>
+							<h5>Løypeinformasjon</h5>
 						</div>
 						
 						<div class="track-container-right">
@@ -226,6 +226,7 @@ $('.navbar-collapse ul li a').click(function() {
 			offsetTop = 51; // Calculate the top offset
 		var top = $("#top").height();
 			$("#map").css('height', $(window).height()-offsetTop);
+			$("#map").css('trackdiv', $(window).height()-offsetTop);
 	}).resize();
 	
 	
@@ -267,7 +268,7 @@ $('.navbar-collapse ul li a').click(function() {
 	});
 			
 	function populateList(trackList) {
-        console.log(trackList);
+        
 		trackList.sort(function(a,b) {
 			return a.trackLength - b.trackLength
             });
