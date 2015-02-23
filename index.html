@@ -241,7 +241,7 @@ $('.navbar-collapse ul li a').click(function() {
 	
 	function loadTrackData() {
 	
-		$.getJSON(url + '/langeland/trackobjects', function (data) {
+		$.getJSON(url + '/trackobjects', function (data) {
 			
 			for (var i=0; i<data.length; i++) {
 				LS.app.addTrackObjects(JSON.parse(data[i]));
