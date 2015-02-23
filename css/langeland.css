@@ -1,15 +1,64 @@
+
+html {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+	a:hover,
+	a:focus {
+		text-decoration: none;
+		color: #11505d;
+	}
+
+	.navbar-header {
+		color : #eeeeee;
+	}
+	
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 35px;
+    text-transform: uppercase;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
 #top {
+    margin-bottom: 15%;
+}
+#tracks {
+    padding-top: 51px;
+    height: 100%;
+}
+#lang-web-cam{
+class="img-responsive"
+    display: block;
     
+}
+#contact {
+    min-height: 60%;
+    color: #dfdfdf;
+}
+
+#camera {
+display: table;
+position: relative;
+width: 100%;
+height: 100%;
 }
 
 #home-info {
     margin-top: 250px;
 }
-
-
-#footer {
-    color: #dfdfdf;
+#lang-weather-icon {
+    position: absolute;
+    
 }
+
 
 #lang-temperature {
     display: inline-block;
@@ -19,9 +68,7 @@
 #lang-weather-icon {
     display: inline-block;
     position: relative;
-    
 }
-
 
 #lang-weather-box {
 margin-left: auto;
@@ -29,14 +76,18 @@ margin-right: auto;
     display: table;
 }
 
-
+.lang-left-container {
+    padding-left:0;
+    padding-right:0;
+    margin-left:0;
+    margin-right:0;
+}
 .lang-home-box {
         min-height: 100px;
-        margin: 10px;
+        margin: 15px;
 		text-align: left;
 		color: #121212;
 		height: auto;
-		width: 100%;
         padding: 5px;
         padding-bottom: 30px;
 		background-color: #ffffff;
@@ -47,8 +98,6 @@ margin-right: auto;
 		background-color: #ffffff;
 		opacity:0.95;
 }   
-
-
 
 .lang-home-box:hover h3 {
 		background-color: #454545;
@@ -67,8 +116,229 @@ margin-right: auto;
     color: #dfdfdf;
 }
 
-
 .lang-home-box p{
     padding: 10px;
     margin: 0;
 }
+
+#track {
+    100%;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+#trackinfo-container {
+			position: absolute;
+		}
+
+/* OLD STUFF */
+
+
+
+	.navbar-custom {
+		font-weight: 300;
+		margin-bottom: 0;
+		border-bottom: 1px solid rgba(255,255,255,.3);
+		text-transform: uppercase;
+		font-family: "Open Sans", "	", Helvetica, Arial, sans-serif;
+		background-color: #121212;
+	}
+
+	.navbar-custom .navbar-brand {
+			font-weight: 300;
+			letter-spacing: 3px;
+	}
+
+	.navbar-custom .navbar-brand:focus {
+		outline: 0;
+	}
+
+	.navbar-custom .navbar-brand .navbar-toggle {
+		padding: 4px 6px;
+		font-size: 16px;
+		color: #fff;
+	}
+
+	.navbar-custom .navbar-brand .navbar-toggle:focus,
+	.navbar-custom .navbar-brand .navbar-toggle:active {
+		outline: 0;
+	}
+
+	.navbar-custom a {
+		color: #fff;
+	}
+
+	.navbar-custom .nav li.active {
+		outline: nonte;
+		background-color: rgba(255,255,255,.2);
+	}
+
+	.navbar-custom .nav li a {
+		-webkit-transition: background .3s ease-in-out;
+		-moz-transition: background .3s ease-in-out;
+		transition: background .3s ease-in-out;
+	}
+
+	.navbar-custom .nav li a:hover,
+	.navbar-custom .nav li a:focus,
+	.navbar-custom .nav li a.active {
+		outline: 0;
+		background-color: rgba(255,255,255,.2);
+	}
+ 
+ 
+	#contact {
+		background-color: #121212;
+		margin-top: 0px;
+	}
+	
+    
+
+/* TRACK SECTION */
+
+
+	.track-section {
+		background: rgba(230,230,230,.85);
+		text-align: left;
+		color: #121212;
+		z-index: 11000;
+	}
+	
+	.track-section h5,h4, h6{
+		margin : 0;
+		font-weight: 400;
+		font-size: 16px;
+	}
+	
+	.track-outer {
+		width: 20%;
+		position: absolute;
+		display: inline-block;
+	}
+	
+	
+	.track-container {
+		float: right;
+		position: relative;
+		width: 100%;
+		background-color: rgba(230,230,230,.85);
+	   border-bottom-width:1px;
+	   border-bottom-color: #bcbcbc;
+	   border-bottom-style: solid;
+		padding-bottom: 10px;
+    }
+	.track-container:hover {
+	
+		background-color: rgba(230,230,230,.95);
+	}
+
+	.track-container-left, .track-container-right{
+		width: 50%;
+		display: table-cell;
+		padding: 5px;
+		text-align: left;
+    }
+	
+	.track-container-first, .track-container-second, .track-container-third {
+		width: 33%;
+		display: table-cell;
+		height: 100%;
+		text-align: left;
+    }
+	
+	.track-container-full{
+		width: 100%;
+		text-align: left;
+		padding: 10px;
+    }
+	
+	.full-row {
+		width: 100%;
+		text-align: left;
+		padding-bottom: 10px;
+		padding-right: 10px;
+		padding-left: 10px;
+		height: 16px;
+		opacity: 0.8;
+	}
+	
+	.two-part-row {
+		display: table;
+		width: 100%;
+		padding: 10px;
+	}
+	
+	.three-part-row {
+		display: table;
+		width: 100%;
+		padding: 10px;	
+
+	}
+	
+	.progress-bar {
+		height: 8px;
+	}
+	
+	.progress-bar-first {
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+	}
+	
+	.progress-bar-last {
+		border-top-right-radius: 4px;
+		border-bottom-right-radius: 4px;
+	}
+	
+	
+
+
+/*!
+ * Start Bootstrap - Grayscale Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+ 
+
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(http://fonts.gstatic.com/s/opensans/v10/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Open Sans Light Italic'), local('OpenSansLight-Italic'), url(http://fonts.gstatic.com/s/opensans/v10/PRmiXeptR36kaC0GEAetxko2lTMeWA_kmIyWrkNCwPc.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://fonts.gstatic.com/s/opensans/v10/xjAJXh38I15wypJXxuGMBo4P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'), url(http://fonts.gstatic.com/s/opensans/v10/PRmiXeptR36kaC0GEAetxolIZu-HDpmDIZMigmsroc4.woff2) format('woff2');
+}
+

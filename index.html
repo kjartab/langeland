@@ -10,9 +10,9 @@
     <link href="/assets/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="css/stylish-portfolio.css" rel="stylesheet">
     <link href="css/newlangeland.css" rel="stylesheet">
-    <link href="css/langeland.css" rel="stylesheet">
-    <link href="/assets/lib/bootstrap/extensions/grayscale/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	
+    <link href="css/langeland.css" rel="stylesheet">
 
 
   </head>
@@ -72,7 +72,7 @@
  <header id="top" class="header">
         <div class="text-vertical-center">
 			<div id="home-info" class="col-lg-8 col-lg-offset-2 text-center">
-                <div class="col-lg-4">
+                <div class="col-lg-4 lang-left-container">
 				<a class=" lang-home-container" href="#tracks">
                     <div id="lang-tracks" class="lang-home-box">
                         <h3>Løypestatus</h3>
@@ -99,6 +99,7 @@
                  <a class="col-md-8 lang-home-container">
                     <div id="lang-info" class="lang-home-box">
                         <h3>Info</h3>
+                        <h1></h1>
                         <p>Vi er i ferd med å få opp nye nettsider. Løypeoppdateringar er i testperiode og vi kan ikkje garantere riktig info. Trykk for å lese meir. Vi er i ferd med å få opp nye nettsider. Løypeoppdateringar er i testperiode og vi kan ikkje garantere riktig info. Trykk for å lese meir</p>
                     
                     </div>
@@ -111,7 +112,7 @@
 	<!------- /.TOP SECTION ------->
 	
 	
-	<section id="tracks" class="content-section">
+	<section id="tracks">
 	
 		<div id="map"></div>
 		
@@ -121,7 +122,7 @@
 				<div class="track-container" id="track-header">
 					<div class="two-part-row">
 						<div class="track-container-left">
-							<h5>Løypeinformasjon</h5>
+							<h5>Løypeinformasjon</h5><i class="fa fa-bar-chart"></i>
 						</div>
 						
 						<div class="track-container-right">
@@ -140,42 +141,33 @@
 	
 	
 	
+ <section id="camera">
+			<div class="text-vertical-center">
+            <div class=" col-lg-8">
+                <div class="lang-web-cam">
+                    <img src="http://37.44.172.66/axis-cgi/jpg/image.cgi?resolution=640x480" class="img-responsive"></img>
+                </div>
+                </div>
+            </div>
+ </section>
 	
-http://37.44.172.66/axis-cgi/jpg/image.cgi?resolution=640x480
 	
-	<section id="contact" class="content-section">
-
-	<div id="footer" class="col-lg-8 col-lg-offset-2 text-center">
-			<h3>Kontaktinfo</h3>
-			<p>Telefon: <a href="tel:+4791312250">91312250</a></p>
-			<p>Epost: <a href="mailto:feedback@startbootstrap.com">kontakt@langelandskisetner.no</a> </p>
-			<p>Langeland Skisenter kan også finnast her:</p>
-			<ul class="list-inline banner-social-buttons">
-				<li>
-					<a href="https://facebook.com/langelandskisenter" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
-				</li>
-				<li>
-					<a href="https://plus.google.com/111515455378621337089/" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
-				</li>
-			</ul>
+	<section id="contact">
+        <div class="col-lg-8 col-lg-offset-2">
+                <h3>Kontaktinfo</h3>
+                <p>Telefon: <a href="tel:+4791312250">91312250</a></p>
+                <p>Epost: <a href="mailto:feedback@startbootstrap.com">kontakt@langelandskisetner.no</a> </p>
+                <p>Langeland Skisenter kan også finnast her:</p>
+                <ul class="list-inline banner-social-buttons">
+                    <li>
+                        <a href="https://facebook.com/langelandskisenter" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/111515455378621337089/" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+                    </li>
+                </ul>
 		</div>
-
 	</section>
-
-
-
-
-	<!-- Footer -->
-	<footer>
-		<div class="container text-center">
-			<p>Copyright &copy; Your Website 2014</p>
-		</div>
-	</footer>
-
-
-
-
-
 
 
 
@@ -221,32 +213,20 @@ $('.navbar-collapse ul li a').click(function() {
 });
 
 
-	$(window).resize(function () {
-		var h = $(window).height(),
-			offsetTop = 55; // Calculate the top offset
-		var top = $("#top").height();
-		if($(window).width()>767) {
-			$("#map").css('height', $(window).height()*0.85-offsetTop);
-			$("#trackdiv").css('height', $(window).height()*0.85-offsetTop);
-			$("#tracks").css('height', $(window).height());
-			$("#tracks").css('padding-top', $(window).height()*0.075+offsetTop);
-			$("#tracks").css('padding-bottom', $(window).height()*0.075);
-		} else {
-			$("#map").css('height', $(window).height()*0.6-offsetTop);
-			$("#trackdiv").css('height', '100%');
-			
-			$("#map").css('margin-top', '10%');
-			$("#map").css('margin-bottom', '10%');
-			
-			$("#trackdiv").css('margin-top', '10%');
-			$("#trackdiv").css('margin-bottom', '10%');
-					}
-	}).resize();
 	
 	
 	LS = LS || {};
 	LS.temporalColor.init();
 	LS.app.init('#map', LS.temporalColor);
+	
+    
+
+	$(window).resize(function () {
+		var h = $(window).height(),
+			offsetTop = 51; // Calculate the top offset
+		var top = $("#top").height();
+			$("#map").css('height', $(window).height()-offsetTop);
+	}).resize();
 	
 	
 
@@ -287,15 +267,14 @@ $('.navbar-collapse ul li a').click(function() {
 	});
 			
 	function populateList(trackList) {
+        console.log(trackList);
 		trackList.sort(function(a,b) {
-			console.log(a);
-			console.log(b);
-			return a.trackLength - b.trackLength});
+			return a.trackLength - b.trackLength
+            });
 	
 		for (var i=0; i<trackList.length; i++) {
 			$("#tracklist").append(buildStatusBar(trackList[i]));
-		
-		
+            
 		}
 	}
 	
