@@ -15,8 +15,6 @@ LS.app = (function (){
 		*/
 		
 		function style(feature) {
-			console.log(feature);
-			console.log(feature.properties.segmenttime);
 			return {
 				fillColor: _temporalColor.getTimeColor(feature.properties.segmenttime),
 				weight: 3,
@@ -177,17 +175,20 @@ LS.app = (function (){
 		return time;
 	}
 	
-	function Track(trackObject) {
+	function Track(trackObject, segments) {
 	
 		this.trackId = trackObject.track_id;
 		this.name = trackObject.name;
-		this.trackSegments = [];
-		console.log(trackObject);
+		this.trackSegments = {};
 		for (var i = 0; i<trackObject.segment_ids.length; i++) {
-			this.trackSegments.push(
-				{segmentId : trackObject.segment_ids[i], 
-				segmentOrder : trackObject.segment_order[i],
-				definingSegment : trackObject.defines_track[i]});
+			this.trackSegments[trackObject.segment_ids[i]] =
+            {
+                segmentOrder : trackObject.segment_order[i],
+                isDefiningSegment : trackObject.defines_track[i] == '1' ? true : false,
+                segments : [],
+                segmentLength : 0,
+                status : []
+            };
 		}
 		this.lastUpdate = null;
 		
@@ -195,52 +196,69 @@ LS.app = (function (){
 		this.subSegments = [];
 		this.status = [];
 		this.temp = [];
-		console.log(trackObject);
-		
 		this.buildInfo = function(segments) {
 		
-			for (var j=0; j<this.trackSegments.length; j++) {
+			for (var trackSegmentId in this.trackSegments) {
+                
 				for (var i=0; i<segments.length; i++) {
-						
-						if (segments[i].properties.sid == this.trackSegments[j].segmentId) {
-						
-							this.status.push({
-								
-								segmentid : segments[i].properties.sid,
-								segmentOrder : this.trackSegments[j].segmentOrder,
-								subSegmentOrder : segments[i].properties.segmentorder, 
-								subSegmentLength : segments[i].properties.length,
-								subSegmentTime : segments[i].properties.segmenttime
-								
-								});
-								
-							this.trackLength += segments[i].properties.length;
-							console.log((this.trackSegments[j].definingSegment));
-							
-							if( segments[i].properties.segmenttime > this.lastUpdate || this.lastUpdate == null) {
-								if (this.trackSegments[j].definingSegment) {
-								this.lastUpdate = segments[i].properties.segmenttime;
-								console.log(segments[i].properties.segmenttime);
-								}
-							}
-						}
+                    if (trackSegmentId == segments[i].properties.sid) {
+                        
+                        this.trackSegments[trackSegmentId].segments.push({
+                            subSegmentOrder : segments[i].properties.segmentorder, 
+                            subSegmentLength : segments[i].properties.length,
+                            subSegmentTime : segments[i].properties.segmenttime
+                            
+                        });
+                        this.trackSegments[trackSegmentId].segmentLength += segments[i].properties.length;
+                        
+                    }
 				}
-				
-				
 			}
-			
+            
+            for (var trackSegmentId in this.trackSegments) {
+                
+                if (this.trackSegments[trackSegmentId].isDefiningSegment) {
+                    var tempLength = 0;
+                    var segmentList = this.trackSegments[trackSegmentId];
+                    for (i=0; i<segmentList.length; i++) {
+                        if (i==0) {
+                            this.lastUpdate = segmentList[i].subSegmentTime;
+                            tempLength = segmentList[i].subSegmentLength;
+                        } else {
+                            if (segmentList[i].subSegmentLength > tempLength) {
+                                this.lastUpdate = segmentList[i].subSegmentTime;
+                            }
+                        }
+                        
+                    }
+                }
+            }
 		}
+        
+        
 		
 		this.getLastUpdate = function() {
 			return this.lastUpdate;
 		}
 		this.getStatus = function() {
-			return this.status;
+            var status = [];
+            for (segmentId in this.trackSegments) {
+                var segment = this.trackSegments[segmentId];
+                
+                for (var i =0; i<segment.segments.length; i++) {
+                     status.push( {
+                        'subSegmentTime' : segment.segments[i].subSegmentTime,
+                       'subSegmentLength' : segment.segments[i].subSegmentLength
+                    });
+                }
+                
+            }
+			return status;
 		 }
 		this.getSegmentIds = function() {
 			var res = [];
-			for (var i=0; i<this.trackSegments.length; i++) {
-				res.push(this.trackSegments[i].segmentId);
+			for (var id in this.trackSegments) {
+				res.push(this.trackSegments[id].segmentId);
 			}
 			return res;
 		}

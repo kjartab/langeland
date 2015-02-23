@@ -119,8 +119,10 @@ var lang = (function (divElement){
 			
 		}
 		
-		function getAllSegments() {
+		function getSegments() {
+                
 			var allSegments = [];
+            console.log(geojson);
 			for (var i=0; i<idMap.length; i++) {
 				allSegments.push(map._layers[idMap[i].lid].feature);
 			}
@@ -129,7 +131,7 @@ var lang = (function (divElement){
 		
 		
 		function addTrackObjects(trackObjects) {
-			var tempsegments = getAllSegments();
+			var tempsegments = getSegments();
 				var newTrackObject = new Track(trackObjects);
 				
 				newTrackObject.buildInfo(tempsegments);
@@ -159,7 +161,17 @@ var lang = (function (divElement){
 	
 	
 	function Track(trackInfo) {
-		//console.log(trackInfo);
+        this.segmentArray = [];
+		
+        for (var i=0; i <trackInfo.segment_ids.length; i++) {
+            this.segmentArray.push(
+                {
+                    'sid' : trackInfo.segment_ids[i],
+                    'segment_order' : trackInfo.segment_order[i],
+                    'track_defining' : trackInfo.defines_track[i]
+                }
+            );
+        }
 		this.segmentIds = trackInfo.segment_ids;
 		this.segmentOrder = trackInfo.segment_order;
 		this.id = trackInfo.track_id;
@@ -172,12 +184,10 @@ var lang = (function (divElement){
 			var tempSegment;
 			for (var i=0; i<segments.length; i++) {
 			
-				for (var j=0; j<this.segmentIds.length; j++) {
-				
+				for (var j=0; j<this.segmentArray.length; j++) {
+                    
 					if (segments[i].properties.sid == this.segmentIds[j]) {
-						console.log(segments[i].properties);
 						this.trackLength += +segments[i].properties.length;
-						cosnole.log(segments[i]);
 						this.status.push({
 							segmentLength : segments[i].properties.length,
 							segmentTime : segments[i].properties.segmenttime,
@@ -200,6 +210,8 @@ var lang = (function (divElement){
 
 	}
     
-    function getLatestTrackUpdate() {
-        
+    function getLongestSubsegment(segmentId) {
+        for (var i=0; i<segments.length; i++) {
+            
+        }   
     }

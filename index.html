@@ -183,7 +183,6 @@ function getWeather() {
         type: 'GET',
         dataType: "json",
         success: function( data ) {
-            console.log(data);
             setWeather(data);
         }
     });
@@ -232,12 +231,12 @@ $('.navbar-collapse ul li a').click(function() {
 	
 
 	$.getJSON(url + '/spatiotemporal', function (data) {
-	var time = new Date();
-		LS.app.addSegments(JSON.parse(data));
-		console.log(new Date() - time);
-		loadTrackData();
-	});
-	
+        var time = new Date();
+            LS.app.addSegments(JSON.parse(data));
+            
+            loadTrackData();
+    });
+        
 	
 	function loadTrackData() {
 	
@@ -247,7 +246,7 @@ $('.navbar-collapse ul li a').click(function() {
 				LS.app.addTrackObjects(JSON.parse(data[i]));
 			}
 			populateList(LS.app.getTracks());
-		
+            
 		});
 	
 	}
