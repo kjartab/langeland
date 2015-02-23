@@ -210,7 +210,7 @@ LS.app = (function (){
                             
                         });
                         this.trackSegments[trackSegmentId].segmentLength += segments[i].properties.length;
-                        
+                        this.trackLength+= segments[i].properties.length;
                     }
 				}
 			}
@@ -240,15 +240,19 @@ LS.app = (function (){
 		this.getLastUpdate = function() {
 			return this.lastUpdate;
 		}
+        
 		this.getStatus = function() {
+            
             var status = [];
             for (segmentId in this.trackSegments) {
                 var segment = this.trackSegments[segmentId];
                 
-                for (var i =0; i<segment.segments.length; i++) {
+                var subSegments = segment.segments.sort(function(a,b) {a.subSegmentOrder < b.subSegmentOrder });
+                for (var i =0; i<subSegments.length; i++) {
                      status.push( {
-                        'subSegmentTime' : segment.segments[i].subSegmentTime,
-                       'subSegmentLength' : segment.segments[i].subSegmentLength
+                        segmentId : segmentId,
+                        subSegmentTime : subSegments[i].subSegmentTime,
+                        subSegmentLength : subSegments[i].subSegmentLength	
                     });
                 }
                 
@@ -258,7 +262,7 @@ LS.app = (function (){
 		this.getSegmentIds = function() {
 			var res = [];
 			for (var id in this.trackSegments) {
-				res.push(this.trackSegments[id].segmentId);
+				res.push(id);
 			}
 			return res;
 		}
