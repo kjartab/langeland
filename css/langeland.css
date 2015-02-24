@@ -4,16 +4,16 @@ html {
 }
 
 
-	a:hover,
-	a:focus {
-		text-decoration: none;
-		color: #11505d;
-	}
+a:hover,
+a:focus {
+    text-decoration: none;
+    color: #11505d;
+}
 
-	.navbar-header {
-		color : #eeeeee;
-	}
-	
+.navbar-header {
+    color : #eeeeee;
+}
+
 h1,
 h2,
 h3,
@@ -27,6 +27,12 @@ h6 {
     letter-spacing: 1px;
 }
 
+#contact-info {
+    padding-top: 40px;
+}
+.social-button {
+    border-radius: 0;
+}
 #top {
     margin-bottom: 15%;
 }
