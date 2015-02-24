@@ -230,7 +230,7 @@ $('.navbar-collapse ul li a').click(function() {
 	
 	
 
-	$.getJSON(url + '/spatiotemporal', function (data) {
+	$.getJSON(url + 'data/spatiotemporal', function (data) {
         var time = new Date();
             LS.app.addSegments(JSON.parse(data));
             
@@ -240,7 +240,7 @@ $('.navbar-collapse ul li a').click(function() {
 	
 	function loadTrackData() {
 	
-		$.getJSON(url + '/trackobjects', function (data) {
+		$.getJSON(url + 'data/trackobjects', function (data) {
 			
 			for (var i=0; i<data.length; i++) {
 				LS.app.addTrackObjects(JSON.parse(data[i]));
