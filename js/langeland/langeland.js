@@ -180,7 +180,7 @@ LS.app = (function (){
             } else if (temp.getDate() == _lastUpdate.getDate()  && temp.getMonth() == _lastUpdate.getMonth()) {
                 _dayMeterCount += feature.properties.length;
             }
-            console.log(_lastUpdate);
+            
             
             
         }
@@ -251,9 +251,8 @@ LS.app = (function (){
 			}
             
             for (var trackSegmentId in this.trackSegments) {
-                if (this.trackSegments[trackSegmentId].isDefiningSegment) {
-                    
                     var tempLength = 0;
+                if (this.trackSegments[trackSegmentId].isDefiningSegment) {
                     var segmentList = this.trackSegments[trackSegmentId].segments;
                     for (i=0; i<segmentList.length; i++) {
                         if (i==0) {
@@ -262,12 +261,15 @@ LS.app = (function (){
                         } else {
                             if (segmentList[i].subSegmentLength > tempLength) {
                                 this.lastUpdate = segmentList[i].subSegmentTime;
+                                tempLength = segmentList[i].subSegmentLength;   
+                                
                             }
                         }
                         
                         
                     }
                 }
+
             }
 		}
         
