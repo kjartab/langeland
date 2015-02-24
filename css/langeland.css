@@ -40,6 +40,11 @@ h6 {
     
 }
 
+#info-body {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
 #header {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
