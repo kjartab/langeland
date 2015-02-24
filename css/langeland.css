@@ -39,6 +39,13 @@ h6 {
     display: block;
     
 }
+
+#header {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#header h1 {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 #contact {
     min-height: 60%;
     color: #dfdfdf;
@@ -54,10 +61,7 @@ height: 100%;
 #home-info {
     margin-top: 250px;
 }
-#lang-weather-icon {
-    position: absolute;
-    
-}
+
 
 
 #lang-temperature {
@@ -68,11 +72,12 @@ height: 100%;
 #lang-weather-icon {
     display: inline-block;
     position: relative;
+    vertical-align: middle;
 }
 
 #lang-weather-box {
-margin-left: auto;
-margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
     display: table;
 }
 
@@ -122,6 +127,7 @@ margin-right: auto;
 }
 
 #track {
+
 }
 
 #map {

@@ -2,7 +2,7 @@ var LS = LS || {};
 
 
 LS.app = (function (){
-	
+            
 		var map = null, 
 		geojson = null;
 		var _temporalColor; 
@@ -43,7 +43,7 @@ LS.app = (function (){
 
 				
 		function onEachFeature(feature, layer) {
-			
+            
 			layer.on({
 				mouseover: highlightFeature,
 				mouseout : resetHighlight,
@@ -57,17 +57,24 @@ LS.app = (function (){
 		}
 		
 		function click(e) {
+            
 			console.log(e.target.feature.properties);
 		}
 		
+            
+        var _dayMeterCount = 0;
+        var _lastUpdate;
 		
 		/*
 			Public functions
 		*/
 		function init(divElement, temporalColor) {
 			_temporalColor = temporalColor;
-			map = L.map('map', {zoomControl: false}).setView([61.3999272955946,5.76203078840252], 13);
+			map = L.map('map', {zoomControl: false}).setView([61.3999272955946,5.7503078840252], 14);
 			
+            
+            _dayMeterCount = 0;
+            
 			L.control.zoom({
 				 position:'topright'
 			}).addTo(map);
@@ -77,28 +84,18 @@ LS.app = (function (){
 			
 			map.on('layeradd', function(e) {
 
-				if (e.layer.feature) {	
+				if (e.layer.feature) {	    
 					idMap.push({
 						sid : e.layer.feature.properties.sid,
 						lid : e.layer._leaflet_id
 					});
+                    updateTopTrackInfo(e.layer.feature);
 				}
 			});
 		}
 		
 		function addSegments(featureCollection) {
-			
-			if (!geojson) {
-				geojson = L.geoJson(featureCollection, {onEachFeature : onEachFeature, style : style}).addTo(map);
-			} else {
-				for (var i=0; i<geojson.objects.length; i++) {
-					if (segmentTime != segmentTime || lengt != length) {
-					//	delete and add
-					}
-				}
-				//geojson = L.geoJson(featureCollection, {onEachFeature : onEachFeature, style : style}).addTo(map);
-			} 
-			
+            geojson = L.geoJson(featureCollection, {onEachFeature : onEachFeature, style : style}).addTo(map);
 		}
 		
 		function highlightSegments(segmentIds) {
@@ -151,6 +148,42 @@ LS.app = (function (){
 		function getTracks() {
 			return tracks;
 		}
+        
+        function updateTopInfo() {
+           var str = 'Sist køyrd ';
+           var today = new Date();
+           var yesterday = new Date();
+           yesterday.setDate(yesterday.getDate() - 1);
+           console.log(yesterday.getDate());
+           console.log(_lastUpdate.getDate());
+           var str2;
+           if (_lastUpdate.getDate() == today.getDate && _lastUpdate.getMonth() == today.getMonth()) {
+               str2 = 'i dag';
+           } else if (_lastUpdate.getDate() == yesterday.getDate() && _lastUpdate.getMonth() == yesterday.getMonth()) {
+               str2 = 'i går';
+           } else {
+                str2 = LS.timeModule.getDateText(_lastUpdate);
+           }
+           str = str + str2
+           var str2 = ' ' + (_dayMeterCount/1000).toPrecision(2) +  ' km vart preparert';
+           $('#lang-track-status').html('<p>' +str + '</p><p>' + str2 + '</p>');
+        }
+        
+        function updateTopTrackInfo(feature) {
+            var temp = convertTime(feature.properties.segmenttime);
+            if (typeof _lastUpdate === "undefined") {
+                _dayMeterCount = feature.properties.length;
+                _lastUpdate = temp;
+            } else if (temp.getDate() > _lastUpdate.getDate() && temp.getMonth() == _lastUpdate.getMonth()) {
+                _dayMeterCount = feature.properties.length;
+                _lastUpdate = temp;
+            } else if (temp.getDate() == _lastUpdate.getDate()  && temp.getMonth() == _lastUpdate.getMonth()) {
+                _dayMeterCount += feature.properties.length;
+            }
+            console.log(_lastUpdate);
+            
+            
+        }
 		
 		/*
 			Return public functions
@@ -161,12 +194,13 @@ LS.app = (function (){
 			addTrackObjects : addTrackObjects,
 			getTracks : getTracks,
 			highlightTrack : highlightTrack,
-			resetAllStyles : resetAllStyles
+			resetAllStyles : resetAllStyles,
+            updateTopInfo : updateTopInfo
 		}
 				
 	})();
 	
-	
+    
 	function convertTime(ts) {
 		var time = new Date(1970,01,01,0,0,0,0);
 		if (ts) {
@@ -217,9 +251,8 @@ LS.app = (function (){
 			}
             
             for (var trackSegmentId in this.trackSegments) {
-                console.log(trackSegmentId);
                 if (this.trackSegments[trackSegmentId].isDefiningSegment) {
-                    console.log('defining');
+                    
                     var tempLength = 0;
                     var segmentList = this.trackSegments[trackSegmentId].segments;
                     for (i=0; i<segmentList.length; i++) {
@@ -231,7 +264,7 @@ LS.app = (function (){
                                 this.lastUpdate = segmentList[i].subSegmentTime;
                             }
                         }
-                        console.log(segmentList[i].subSegmentTime);
+                        
                         
                     }
                 }
@@ -241,7 +274,6 @@ LS.app = (function (){
         
 		
 		this.getLastUpdate = function() {
-            console.log(this.lastUpdate);
 			return this.lastUpdate;
 		}
         

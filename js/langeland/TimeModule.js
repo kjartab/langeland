@@ -32,13 +32,16 @@ LS.timeModule = (function() {
 	
 	function getTimeText(timeString) {
 		var now = new Date();
-		var time = convertTime(timeString);		
-        console.log(timeString);
+		var time = convertTime(timeString);	
 		return  time.getHours() + ':' +  (time.getMinutes()<10 ? '0' : '') + time.getMinutes()+ ' '  + time.getDate() + '. '  + monthName(time.getMonth());
 	
 		
 	}
-	
+    
+    function getDateText(time) {
+		return time.getDate() + '. '  + monthName(time.getMonth());
+    }
+        
 	function fullMonthName(monthInteger) {
 		switch(monthInteger) {
 			
@@ -150,7 +153,8 @@ LS.timeModule = (function() {
 	
 	
 	return {
-		getTimeText : getTimeText
+		getTimeText : getTimeText,
+        getDateText : getDateText
 	}
 
 })();
