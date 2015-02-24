@@ -46,6 +46,11 @@ h6 {
     
 }
 
+.tracks-info-text {
+    font-size: 16px;
+}
+
+
 #info-body {
     padding: 20px;
     margin-bottom: 20px;

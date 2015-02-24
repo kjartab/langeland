@@ -166,7 +166,7 @@ LS.app = (function (){
            }
            str = str + str2
            var str2 = ' ' + (_dayMeterCount/1000).toPrecision(2) +  ' km vart preparert';
-           $('#lang-track-status').html('<p>' +str + '</p><p>' + str2 + '</p>');
+           $('#lang-track-status').html('<p class="tracks-info-text">' +str + '</p><p class="tracks-info-text">' + str2 + '</p>');
         }
         
         function updateTopTrackInfo(feature) {
