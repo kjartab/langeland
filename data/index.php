@@ -26,16 +26,16 @@ require_once('includes/db.php');
 				
 				// if data -> show overview 	
 				
-				if (count($request) > 3) {
+				if (count($request) > 2) {
 			
-					switch($request[3]) {
+					switch($request[2]) {
 					
 						// ------------- Handle all geometry queries ------------- 
 						case 'spatial':
-							if (count($request) == 4) {
+							if (count($request) == 3) {
 								$res = $dbHelper->getGeometryTables();
-							} else if (count($request) > 5) {
-								$res = $dbHelper->getRecordFromTable($request[4],$request[5]);
+							} else if (count($request) > 4) {
+								$res = $dbHelper->getRecordFromTable($request[3],$request[4]);
 							}
 							
 							echo $res;
