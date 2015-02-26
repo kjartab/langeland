@@ -80,7 +80,14 @@ LS.app = (function (){
 			}).addTo(map);
 			
 			map.scrollWheelZoom.disable();
-			map.addLayer(L.tileLayer.wms("http://opencache.statkart.no/gatekeeper/gk/gk.open?",{layers: 'topo2graatone', format: 'image/png'},{attribution:''}));
+            L.tileLayer('http://www.webatlas.no/maptiles/tiles/webatlas-gray-vektor/wa_grid/{z}/{x}/{y}.png', {
+                maxZoom: 20,
+                zIndex: 0,
+                attribution: '<a target=_blank href="http://www.norkart.no">Norkart AS</a>'
+            }).addTo(map);
+            
+			//map.addLayer(L.tileLayer.wms("http://www.webatlas.no/maptiles/tiles/webatlas-gray-vektor/wa_grid/{z}/{x}/{y}.png"));
+			//map.addLayer(L.tileLayer.wms("http://opencache.statkart.no/gatekeeper/gk/gk.open?",{layers: 'topo2graatone', format: 'image/png'},{attribution:''}));
 			
 			map.on('layeradd', function(e) {
 
