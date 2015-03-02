@@ -33,12 +33,14 @@ LS.timeModule = (function() {
 	function getTimeText(timeString) {
 		var now = new Date();
 		var time = convertTime(timeString);	
+        console.log(time);
 		return  time.getHours() + ':' +  (time.getMinutes()<10 ? '0' : '') + time.getMinutes()+ ' '  + time.getDate() + '. '  + monthName(time.getMonth());
 	
 		
 	}
     
     function getDateText(time) {
+        console.log(time);
 		return time.getDate() + '. '  + monthName(time.getMonth());
     }
         

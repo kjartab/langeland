@@ -176,20 +176,24 @@ LS.app = (function (){
            $('#lang-track-status').html('<p class="tracks-info-text">' +str + '</p><p class="tracks-info-text">' + str2 + '</p>');
         }
         
+        function daysCount(time) {
+            return Math.floor(time/(1000*3600*24));
+        }
+        
         function updateTopTrackInfo(feature) {
             var temp = convertTime(feature.properties.segmenttime);
             if (typeof _lastUpdate === "undefined") {
                 _dayMeterCount = feature.properties.length;
                 _lastUpdate = temp;
-            } else if (temp.getDate() > _lastUpdate.getDate() && temp.getMonth() == _lastUpdate.getMonth()) {
+            } else if (daysCount(temp) - daysCount(_lastUpdate) > 1) {
+            
+            //temp.getDate() > _lastUpdate.getDate() && temp.getMonth() == _lastUpdate.getMonth()) {
                 _dayMeterCount = feature.properties.length;
                 _lastUpdate = temp;
-            } else if (temp.getDate() == _lastUpdate.getDate()  && temp.getMonth() == _lastUpdate.getMonth()) {
+           // } else if (temp.getDate() == _lastUpdate.getDate()  && temp.getMonth() == _lastUpdate.getMonth()) {
+            } else if (daysCount(temp) == daysCount(_lastUpdate)) {
                 _dayMeterCount += feature.properties.length;
             }
-            
-            
-            
         }
 		
 		/*
