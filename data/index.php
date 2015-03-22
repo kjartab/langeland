@@ -36,7 +36,7 @@ require_once('includes/config.php');
 
 							$res = $dbHelper->getGeoJsonTracks();
 							
-							echo $res;
+                            Controller::respond(200, $res, 'application/json');
 							break;
 							
 							
@@ -44,56 +44,57 @@ require_once('includes/config.php');
 
 							$res = $dbHelper->getTemporalTracksEWKB();
 							
-							echo $res;
+                            Controller::respond(200, $res, 'application/json');
 							break;
 							
 						case 'segmentmap':
 
 							$res = $dbHelper->getTrackSegments();
 							
-							echo $res;
+                            Controller::respond(200, $res, 'application/json');
 							break;
 
                         
 						case 'weather':
                             
                             $url = "http://api.yr.no/weatherapi/locationforecast/1.9/?lat=61.3999272955946;lon=5.76203078840252";
-                            echo getWeatherInfo($url);
-							
+                           
+                            $res = getWeatherInfo($url);
+                            Controller::respond(200, $res, 'application/json');
 							break;
 
 						case 'inserted':
 
 							$res = $dbHelper->getInsertedPoints($data['numpoints'],$data['order']);
 							
-							echo $res;
+                            Controller::respond(200, $res, 'application/json');
 							break;
                         
 						case 'tracks':
 
 							$res = $dbHelper->getTracks();
 							
-							echo $res;
+                            Controller::respond(200, $res, 'application/json');
 							break;
 							
 						case 'trackobjects':
 						
 							$res = $dbHelper->getTrackObjects();
-							echo $res;
+                            Controller::respond(200, $res, 'application/json');
 							break;
 							
 						case 'segments':
 
 							$res = $dbHelper->getSegmentsWKB();
 							
-							echo $res;
+                            Controller::respond(200, $res, 'application/json');
 							break;
 						
 						case 'segmentswkbandid':
 
 							$res = $dbHelper->getSegmentswkbandid();
 							
-							echo $res;
+                            Controller::respond(200, $res, 'application/json');
 							break;
 							
 						case 'rawdatahours': 
@@ -105,7 +106,7 @@ require_once('includes/config.php');
 							
 							$res = $dbHelper->getRawDataHours($table, $limit, $order, $hours);
 							
-							echo $res;
+                            Controller::respond(200, $res, 'application/json');
 							
 							
 							break;
@@ -118,8 +119,7 @@ require_once('includes/config.php');
 							$order = getVariable($_GET, 'order', 'desc');
 							
 							$res = $dbHelper->getRawData($table, $limit, $order, $hours);
-							
-							echo $res;
+                            Controller::respond(200, $res, 'application/json');
 							
 							
 							break;
@@ -133,6 +133,7 @@ require_once('includes/config.php');
 							$order = getVariable($_GET, 'order', 'desc');
 							
 							$res = $dbHelper->getRawDataOnInterval($table, $limit, $order, $startTime, $endTime);
+                            Controller::respond(200, $res, 'application/json');
 							echo $res;
 							break;
 						
@@ -142,30 +143,27 @@ require_once('includes/config.php');
 
 							$res = $dbHelper->getSegmentss32632();
 							
-							echo $res;
+                            Controller::respond(200, $res, 'application/json');
 							break;	
 							
 							
 						default:
 						
-								echo 'nothing	 ';
-								break;
+                            Controller::respond(404);
+                            break;
 						
 					
 					}
 					
-				} else {
-					header("Location: /data/langeland/data.html");
-					die();
-					
 				} 
+                Controller::respond(404);
 				
 				
 				break;
 				
 				
 			default:
-				Controller::respond( 405 );
+				Controller::respond(405);
 				break;
 	}
     

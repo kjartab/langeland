@@ -89,7 +89,7 @@
                             </div>
                             
                             <div id="lang-weather-icon">
-                                <object data="data/weather.svg" type="image/svg+xml">
+                                <object data="data/weather/weather.svg" type="image/svg+xml">
                                 </object>
                             </div>
                         </div>
@@ -192,7 +192,7 @@ var url = 'http://www.langelandskisenter.no/';
 function getWeather() {
 
     $.ajax({
-        url: "data/weather.json",
+        url: "data/weather/weather.json",
         type: 'GET',
         dataType: "json",
         success: function( data ) {
