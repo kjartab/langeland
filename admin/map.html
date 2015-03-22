@@ -11,7 +11,7 @@
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../scripts/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -20,8 +20,9 @@
     <link href="css/plugins/dataTables.bootstrap.css" rel="stylesheet">
 	
 	
-    <link href="/assets/lib/leaflet/leaflet.css" rel="stylesheet">
-    <link href="/assets/lib/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="../scripts/lib/leaflet/dist/leaflet.css" rel="stylesheet">
+    
+    
     
 
 
@@ -42,9 +43,9 @@
 
 <body>
 
-    <script src="/assets/lib/jquery/jquery-2.1.1.min.js"></script>
-    <script src="/assets/lib/moment/moment.js"></script>
-    <script src="/assets/lib/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../scripts/lib/jquery/dist/jquery.min.js"></script>
+    
+    
 
     <div id="wrapper">
 
@@ -139,15 +140,13 @@
 
     </div>
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="/assets/lib/leaflet/leaflet.js"></script>
+    <script src="../scripts/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../scripts/lib/leaflet/dist/leaflet.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
 
     <!-- DataTables JavaScript -->
-    <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
@@ -156,8 +155,8 @@
     <script>
 
 	
-	$('#datetimepicker1').datetimepicker();
-	$('#datetimepicker2').datetimepicker();
+	//$('#datetimepicker1').datetimepicker();
+	//$('#datetimepicker2').datetimepicker();
 	
 	$('').on('click', getPositions);
 	
@@ -176,7 +175,8 @@
 	var mostRecent;
 	map.addLayer(L.tileLayer.wms("http://opencache.statkart.no/gatekeeper/gk/gk.open?",{layers: 'topo2graatone', format: 'image/png'},{attribution:''}));
 	function getData() {
-	$.getJSON('/datapi/langeland/rawdatahours/', function (data) {
+    
+	$.getJSON('/langeland/data/rawdata/', function (data) {
 		var table = $("#resbody");
 		var tempPoint;
 		for (i=0; i<data.length; i++) {
@@ -246,8 +246,7 @@
 	        layer.bindPopup(feature.properties.id + '<br>Inserted: ' + feature.properties.insertedtime + '<br>Geom: ' + feature.properties.geom);
 	    
 	}
-
-	
+    
 	function convertTime(ts) {
 		var time = new Date(1970,01,01,0,0,0,0);
 		if (ts) {

@@ -6,7 +6,7 @@ ini_set('display_startup_errors', TRUE);
 require_once('includes/api.lib.php'); 
 require_once('includes/DatabaseHelper.php');
 require_once('includes/DatabaseRestricted.php');
-require_once('includes/db.php');
+require_once('includes/config.php');
 
 
 	$requestObj = new Controller();
@@ -23,25 +23,14 @@ require_once('includes/db.php');
 				$dbHelper->connect();
 				
 				$res = '';
-				
+				$requestIndex = DATA_INDEX + 1;
+                
+                
 				// if data -> show overview 	
-				
-				if (count($request) > 2) {
+				if (count($request) > DATA_INDEX + 1) {
 			
-					switch($request[2]) {
+					switch($request[$requestIndex]) {
 					
-						// ------------- Handle all geometry queries ------------- 
-						case 'spatial':
-							if (count($request) == 3) {
-								$res = $dbHelper->getGeometryTables();
-							} else if (count($request) > 4) {
-								$res = $dbHelper->getRecordFromTable($request[3],$request[4]);
-							}
-							
-							echo $res;
-							
-							break;
-							
 						// ------------- Handle the spatiotemporal queries ------------- 
 						case 'spatiotemporal':
 
@@ -64,12 +53,7 @@ require_once('includes/db.php');
 							
 							echo $res;
 							break;
-                        case 'test':
-                            
-                            $url = "http://api.yr.no/weatherapi/locationforecast/1.9/?lat=61.3999272955946;lon=5.76203078840252";
-                            $res = getURL($url);
-                            echo $res;
-                            break;
+
                         
 						case 'weather':
                             
@@ -84,6 +68,7 @@ require_once('includes/db.php');
 							
 							echo $res;
 							break;
+                        
 						case 'tracks':
 
 							$res = $dbHelper->getTracks();
@@ -119,6 +104,20 @@ require_once('includes/db.php');
 							$order = getVariable($_GET, 'order', 'desc');
 							
 							$res = $dbHelper->getRawDataHours($table, $limit, $order, $hours);
+							
+							echo $res;
+							
+							
+							break;
+                        
+						case 'rawdata': 
+							
+							$table = getVariable($_GET,'table', 'positions');
+							$hours =  getVariable($_GET,'hours', 24);
+							$limit = getVariable($_GET, 'limit', 100);
+							$order = getVariable($_GET, 'order', 'desc');
+							
+							$res = $dbHelper->getRawData($table, $limit, $order, $hours);
 							
 							echo $res;
 							
@@ -170,6 +169,10 @@ require_once('includes/db.php');
 				break;
 	}
     
+	function getVariable($list, $id, $default) {
+		return empty($list[$id]) ? $default : $list[$id];
+	}
+
                 
     function getURL($url, $urlvars = null) {
         

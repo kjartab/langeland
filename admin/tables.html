@@ -178,7 +178,7 @@
 
 	
 	
-	$.getJSON('/datapi/langeland/rawdatahours/', function (data) {
+	$.getJSON('/langeland/data/rawdata/', function (data) {
 		var table = $("#resbody");
 		for (i=0; i<data.length; i++) {
           
@@ -186,8 +186,7 @@
 				"<tr>"+
             "<td>" + data[i][0] + "</td>" +
             "<td>" + data[i][1] +"</td>" +
-           	"<td>" + data[i][2] + "</td>" +
-            "<td>" + data[i][3] + " s</td>" +
+            "<td>" + data[i][2] + " s</td>" +
           "</tr>"
 
 			);
