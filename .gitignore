@@ -1,4 +1,6 @@
 db.php
 config.*
-weather*
+weather.json
+weather.png
+weather.xml
 
