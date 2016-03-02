@@ -1,0 +1,5 @@
+---
+- name: Deploy overskya
+  remote_user: ansible
+  vars:
+    test: 2
