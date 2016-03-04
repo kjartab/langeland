@@ -1,0 +1,23 @@
+{
+  "name": "langeland",
+  "version": "1.0.0",
+  "description": "langeland =========",
+  "main": "langeland.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kjartab/langeland"
+  },
+  "author": "Kjartan Bjørset",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kjartab/langeland/issues"
+  },
+  "homepage": "https://github.com/kjartab/langeland",
+  "dependencies": {
+    "cesium": "^1.19.0",
+    "leaflet": "^0.7.7"
+  }
+}

@@ -17,9 +17,7 @@ Vagrant.configure(2) do |config|
         "webservers" => ["default"],
         "dev_enviroment" => ["default"]
     }
-
     ansible.verbose = "vvvv"
-    
     ansible.playbook = "provisioning/playbook.yml"
     ansible.inventory_path = "provisioning/ansible_hosts"
     ansible.ask_sudo_pass = true

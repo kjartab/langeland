@@ -5,3 +5,5 @@ weather.png
 weather.xml
 weather.svg
 .vagrant/
+node_modules/
+devdata/
